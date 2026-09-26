@@ -7,6 +7,7 @@
     "dev": "node server.js",
     "start": "node server.js",
     "build": "node -e \"console.log('Build complete')\"",
+    "build:web": "node scripts/build-web.js",
     "build:electron": "electron-builder --win --publish never",
     "dist:win": "electron-builder --win --x64"
   },
@@ -51,5 +52,9 @@
   },
   "dependencies": {
     "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
   }
 }

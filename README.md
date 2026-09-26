@@ -11,6 +11,7 @@
 <p align="center">
   <a href="#-features">Features</a> •
   <a href="#-preview">Preview</a> •
+  <a href="#-live-website--github-pages">Live Website</a> •
   <a href="#-download--installation">Download</a> •
   <a href="#-keyboard-shortcuts">Shortcuts</a> •
   <a href="#-building-via-github-actions">Build Workflow</a> •
@@ -20,6 +21,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Platform-Windows%2010%20%7C%2011-0078D6?style=flat-square&logo=windows" alt="Windows">
   <img src="https://img.shields.io/badge/Runtime-Electron-47848F?style=flat-square&logo=electron" alt="Electron">
+  <img src="https://img.shields.io/badge/Web-GitHub%20Pages-2ea44f?style=flat-square&logo=github" alt="GitHub Pages">
   <img src="https://img.shields.io/badge/Mode-100%25%20Offline-2ea44f?style=flat-square" alt="Offline">
   <img src="https://img.shields.io/badge/Design-Glassmorphism-black?style=flat-square" alt="Glassmorphism">
 </p>
@@ -102,6 +104,58 @@
 
 ---
 
+## 🚀 Pushing to GitHub & Resolving Git Errors
+
+If you encounter errors like `fatal: not a git repository` or `[rejected] (non-fast-forward)`, run the following commands in your project root:
+
+```bash
+# 1. Initialize git and switch to main branch
+git init
+git branch -M main
+
+# 2. Add your GitHub repository remote
+git remote add origin https://github.com/tausif-rahaman-raiyan/Flowspace-Windows.git
+
+# 3. Stage all files and commit
+git add .
+git commit -m "feat: complete Flowspace Windows app release"
+
+# 4. Push to GitHub (use -f if the remote has existing initial commits like README/License)
+git push -u origin main --force
+```
+
+> **Note on Authentication**: If asked for password, use your [GitHub Personal Access Token](https://github.com/settings/tokens) with `repo` scope, or use GitHub CLI (`gh auth login`).
+
+---
+
+## 🌐 Live Website & GitHub Pages Deployment
+
+Flowspace can run both as a native Windows desktop app and as a blazing-fast, serverless website.
+
+A production-ready GitHub Actions workflow is included at `.github/workflows/deploy-pages.yml` to automatically build and publish Flowspace as a live website on **GitHub Pages** (free, SSL enabled, zero maintenance).
+
+### 1. Enable GitHub Pages in your Repository
+1. On GitHub, navigate to your repository: `tausif-rahaman-raiyan/Flowspace-Windows`.
+2. Click **Settings** (top menu bar) &rarr; select **Pages** (in the left sidebar).
+3. Under **Build and deployment** &rarr; **Source**, select **GitHub Actions**.
+4. That's it! Every time you push to the `main` branch, the workflow will automatically build the site and deploy it.
+
+Your live website will be available at:
+`https://tausif-rahaman-raiyan.github.io/Flowspace-Windows/`
+
+### 2. Manual Workflow Dispatch
+You can also trigger a deployment anytime from the GitHub interface:
+1. Go to the **Actions** tab on GitHub.
+2. Select **Deploy Flowspace Website to GitHub Pages** on the left.
+3. Click **Run workflow** &rarr; choose `main` &rarr; click **Run workflow**.
+
+### 3. Alternative Hosting Options (Vercel, Netlify, Cloudflare)
+To deploy Flowspace on Vercel, Netlify, or Cloudflare Pages:
+* **Build Command**: `npm run build:web`
+* **Output Directory**: `dist-web`
+
+---
+
 ## 🚀 Building via GitHub Actions
 
 This repository includes a preconfigured GitHub Actions CI workflow (`.github/workflows/build.yml`) that automatically builds both the Windows installer and standalone executable on Windows runner infrastructure.
@@ -139,6 +193,9 @@ npm install
 
 # Run web development server
 npm run dev
+
+# Build website bundle (for GitHub Pages / Vercel / Netlify)
+npm run build:web
 
 # Launch desktop Electron app
 npm start
