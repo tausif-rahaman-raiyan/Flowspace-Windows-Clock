@@ -1,0 +1,55 @@
+{
+  "name": "flowspace",
+  "version": "1.0.0",
+  "description": "Flowspace Focus Dashboard",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "build": "node -e \"console.log('Build complete')\"",
+    "build:electron": "electron-builder --win --publish never",
+    "dist:win": "electron-builder --win --x64"
+  },
+  "build": {
+    "appId": "com.raiyan.flowspace",
+    "productName": "Flowspace",
+    "compression": "maximum",
+    "asar": true,
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "assets/**/*",
+      "!node_modules/**/*",
+      "!server.js"
+    ],
+    "extraMetadata": {
+      "main": "main.js"
+    },
+    "win": {
+      "icon": "assets/icon.png",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Flowspace",
+      "differentialPackage": false
+    }
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
