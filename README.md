@@ -94,7 +94,7 @@
 ## 📦 Download & Installation
 
 ### Windows Installer (Recommended)
-1. Download the latest `Flowspace Setup 1.0.0.exe` from [Releases](https://github.com/tausif-rahaman-raiyan/Flowspace-Windows/releases) or the GitHub Actions tab.
+1. Download the latest `Flowspace Setup 1.0.0.exe` from [Releases](https://github.com/tausif-rahaman-raiyan/Flowspace-Windows-Clock-Clock-Clock/releases) or the GitHub Actions tab.
 2. Run the installer:
    * **Choose Custom Location**: Flowspace allows you to choose your desired installation drive and directory (e.g. `C:\`, `D:\Flowspace`).
    * Creates automatic Start Menu and Desktop shortcuts.
@@ -114,7 +114,7 @@ git init
 git branch -M main
 
 # 2. Add your GitHub repository remote
-git remote add origin https://github.com/tausif-rahaman-raiyan/Flowspace-Windows.git
+git remote add origin https://github.com/tausif-rahaman-raiyan/Flowspace-Windows-Clock.git
 
 # 3. Stage all files and commit
 git add .
@@ -135,13 +135,13 @@ Flowspace can run both as a native Windows desktop app and as a blazing-fast, se
 A production-ready GitHub Actions workflow is included at `.github/workflows/deploy-pages.yml` to automatically build and publish Flowspace as a live website on **GitHub Pages** (free, SSL enabled, zero maintenance).
 
 ### 1. Enable GitHub Pages in your Repository
-1. On GitHub, navigate to your repository: `tausif-rahaman-raiyan/Flowspace-Windows`.
+1. On GitHub, navigate to your repository: `tausif-rahaman-raiyan/Flowspace-Windows-Clock`.
 2. Click **Settings** (top menu bar) &rarr; select **Pages** (in the left sidebar).
 3. Under **Build and deployment** &rarr; **Source**, select **GitHub Actions**.
 4. That's it! Every time you push to the `main` branch, the workflow will automatically build the site and deploy it.
 
 Your live website will be available at:
-`https://tausif-rahaman-raiyan.github.io/Flowspace-Windows/`
+`https://tausif-rahaman-raiyan.github.io/Flowspace-Windows-Clock/`
 
 ### 2. Manual Workflow Dispatch
 You can also trigger a deployment anytime from the GitHub interface:
@@ -169,7 +169,7 @@ gh workflow run build.yml
 gh run watch
 
 # Download the compiled .exe artifacts
-gh run download -n Flowspace-Windows-x64
+gh run download -n Flowspace-Windows-Clock-x64
 ```
 
 ### Trigger Build via GitHub Web:
@@ -185,8 +185,8 @@ gh run download -n Flowspace-Windows-x64
 
 ```bash
 # Clone the repository
-git clone https://github.com/tausif-rahaman-raiyan/Flowspace-Windows.git
-cd Flowspace-Windows
+git clone https://github.com/tausif-rahaman-raiyan/Flowspace-Windows-Clock.git
+cd Flowspace-Windows-Clock
 
 # Install dependencies
 npm install
