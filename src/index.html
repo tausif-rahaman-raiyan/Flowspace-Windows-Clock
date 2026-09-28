@@ -1,0 +1,2175 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#111"><title>Flowspace v3.0.0 — Focus Dashboard &amp; Study Sanctuary</title><meta name="description" content="Flowspace v3 offline focus dashboard with pomodoro timer, serene wallpapers, ambient soundscapes, study streaks, calendar analytics, and achievements."><meta property="og:title" content="Flowspace v3.0.0 Focus Dashboard"><meta property="og:description" content="Flowspace v3 offline focus dashboard with pomodoro timer, serene wallpapers, ambient soundscapes, study streaks, calendar analytics, and achievements."><link rel="icon" type="image/png" href="assets/icon.png"><style>
+:root{--glass:rgba(15,18,22,.56);--line:rgba(255,255,255,.22);--white:#fff;--clock-zoom:1;--clock-brightness:1;--clock-opacity:1}*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;color:#fff;background:#17191c;min-height:100vh;overflow:hidden}#bg{position:fixed;inset:0;background-size:cover;background-position:center;transition:background-image .5s;z-index:-2}#shade{position:fixed;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.38),rgba(0,0,0,.12)),linear-gradient(0deg,rgba(0,0,0,.45),transparent 55%);z-index:-1}.top{height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;gap:16px}.brand{flex:1 1 0;display:flex;align-items:center;font-weight:750;letter-spacing:.4px;font-size:20px}.brand span{opacity:.65;font-weight:400}.topnav{flex:1 1 0;display:flex;justify-content:center;align-items:center;gap:10px}.actions{flex:1 1 0;display:flex;justify-content:flex-end;align-items:center;gap:10px}.pill,button,select,input{font:inherit}.pill,button{border:1px solid var(--line);background:rgba(255,255,255,.12);color:white;border-radius:999px;padding:10px 16px;cursor:pointer;backdrop-filter:blur(14px);transition:.2s}.pill.active,button:hover{background:rgba(255,255,255,.27)}.icon{width:42px;height:42px;padding:0;font-size:17px}.main{height:calc(100vh - 146px);display:flex;align-items:center;justify-content:center;text-align:center;padding:20px}.center{width:min(850px,100%)}.greeting{font-size:clamp(18px,2vw,26px);font-weight:400;text-shadow:0 2px 18px #0006}.date{margin-top:8px;letter-spacing:2px;text-transform:uppercase;font-size:13px;opacity:.85}.clock{display:flex;align-items:center;justify-content:center;gap:10px;margin:25px 0 18px;transform:scale(var(--clock-zoom,1));filter:brightness(var(--clock-brightness,1));opacity:var(--clock-opacity,1);transform-origin:center center;transition:transform .2s ease,opacity .2s ease,filter .2s ease}.digit{width:clamp(65px,10vw,132px);height:clamp(92px,13vw,160px);position:relative;background:linear-gradient(#303238 0 49.5%,#17181c 50%,#25262b 51%);border-radius:12px;box-shadow:0 15px 40px #0005;display:grid;place-items:center;font-size:clamp(58px,9vw,118px);font-weight:650;letter-spacing:-4px;font-variant-numeric:tabular-nums;text-shadow:0 2px 1px #ffffff12;overflow:hidden}.digit:after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:#0008;box-shadow:0 1px #ffffff10}.colon{font-size:clamp(45px,7vw,80px);font-weight:300;margin:0 1px;opacity:.9}.ampm{font-size:clamp(13px,2vw,20px);align-self:flex-end;margin:0 0 15px 3px;opacity:.85}.subline{font-size:14px;opacity:.85;margin:14px 0 22px}.task{margin:0 auto 20px;display:flex;gap:8px;justify-content:center}.task input{width:min(340px,70%);background:var(--glass);border:1px solid var(--line);border-radius:30px;padding:12px 18px;color:white;outline:none}.task input::placeholder{color:#ddd}.timerbox{display:none}.timerModes{display:flex;gap:8px;justify-content:center;margin:12px 0 20px;flex-wrap:wrap}.timerRead{font-size:clamp(64px,11vw,120px);font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-4px;text-shadow:0 5px 30px #0005}.controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.primary{background:#fff;color:#17191c;border-color:#fff;font-weight:700;padding:13px 30px}.bottom{position:fixed;bottom:22px;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:0 28px}.bottomleft,.bottomright{display:flex;gap:9px;align-items:center}.tiny{font-size:12px;opacity:.8}.panel{position:fixed;right:20px;top:85px;width:min(440px,calc(100vw - 32px));max-height:82vh;overflow:auto;padding:20px;border:1px solid var(--line);border-radius:20px;background:rgba(18,20,24,.9);backdrop-filter:blur(28px);display:none;box-shadow:0 20px 60px #0005;z-index:20}.panel h3{margin:0 0 14px}.wallgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.wall{height:78px;border-radius:10px;background-size:cover;background-position:center;border:2px solid transparent;cursor:pointer}.wall:hover{border-color:white}.row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:14px 0}.row label{font-size:14px;opacity:.9}.row input,.row select{max-width:155px;background:#292c31;color:#fff;border:1px solid #555;border-radius:8px;padding:8px}.quote{font-size:14px;font-style:italic;opacity:.86;margin-top:22px}.modeSwitch{display:flex;gap:8px}.hidden{display:none!important}@media(max-width:650px){.top{padding:0 15px;height:65px}.topnav{gap:5px}.pill{padding:9px 11px;font-size:12px}.main{height:calc(100vh - 135px)}.bottom{padding:0 13px;bottom:13px}.bottom .tiny{display:none}.clock{gap:5px}.digit{border-radius:8px;letter-spacing:-2px}.panel{right:10px;top:72px}.brand{font-size:17px}}
+
+/* Version Badge in Topbar */
+.appVersionBadge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);font-size:11px;font-weight:700;letter-spacing:.5px;margin-left:8px;vertical-align:middle;color:#fff}
+
+/* Home Dashboard Statistics Cards (Section 55) */
+.homeStatsGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:min(480px,92vw);margin:18px auto 0;text-align:left}
+.homeStatCard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:11px 14px;cursor:pointer;transition:.2s;backdrop-filter:blur(10px)}
+.homeStatCard:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);transform:translateY(-1px)}
+.homeStatCard.fullWidth{grid-column:1 / -1}
+.homeStatTop{display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;opacity:.7;margin-bottom:3px}
+.homeStatMain{font-size:17px;font-weight:800;letter-spacing:-.2px}
+.homeStatProgress{width:100%;height:5px;background:rgba(255,255,255,.1);border-radius:999px;margin-top:7px;overflow:hidden}
+.homeStatProgressFill{height:100%;background:linear-gradient(90deg,#fff,#60a5fa);border-radius:inherit;transition:width .3s ease}
+
+/* Streak & Calendar Panel (Sections 35, 56, 57) */
+#streakPanel{width:min(460px,calc(100vw - 32px))}
+.panel::-webkit-scrollbar{width:6px}
+.panel::-webkit-scrollbar-track{background:transparent}
+.panel::-webkit-scrollbar-thumb{background:rgba(255,255,255,.22);border-radius:999px}
+.panel::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.4)}
+.streakNavTabs{display:flex;gap:5px;margin:8px 0 12px;overflow-x:auto}
+.streakNavTab{flex:1;min-width:72px;padding:7px 9px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:rgba(255,255,255,.8);font-size:11.5px;font-weight:650;cursor:pointer;transition:.2s;text-align:center;white-space:nowrap}
+.streakNavTab:hover{background:rgba(255,255,255,.15);color:#fff}
+.streakNavTab.active{background:rgba(255,255,255,.24);border-color:rgba(255,255,255,.38);color:#fff;font-weight:750;box-shadow:0 3px 12px rgba(0,0,0,.3)}
+
+/* Calendar Navigation Header */
+.calNavHeader{display:flex;align-items:center;justify-content:space-between;margin:12px 0 8px;gap:6px}
+.calNavBtn{padding:5px 11px;border-radius:8px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;font-size:12px;cursor:pointer;transition:.15s}
+.calNavBtn:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.35)}
+.calMonthTitle{font-size:14px;font-weight:750;letter-spacing:.3px;color:#fff;text-align:center;flex:1}
+.calTodayBtn{padding:5px 10px;border-radius:8px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;font-size:11px;font-weight:650;cursor:pointer;transition:.15s}
+.calTodayBtn:hover{background:#fff;color:#111}
+
+/* Month Streak Overview Banner */
+.calMonthBanner{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:6px;margin:8px 0 12px;padding:9px 10px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
+.calMonthBannerItem{display:flex;flex-direction:column;align-items:center;text-align:center}
+.calMonthBannerLabel{font-size:10px;text-transform:uppercase;letter-spacing:.5px;opacity:.65;margin-bottom:2px}
+.calMonthBannerVal{font-size:12px;font-weight:750;color:#fff;font-variant-numeric:tabular-nums}
+.calMonthBannerVal.streakActive{color:#fca5a5}
+.calMonthBannerVal.streakInactive{color:rgba(255,255,255,.45)}
+
+/* 4-Tier Visual Calendar Grid (Section 35, 57) */
+.calWeekHeaders{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;font-size:10.5px;font-weight:700;text-transform:uppercase;opacity:.65;padding-bottom:4px}
+.calGrid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.calEmptyCell{min-height:50px;border-radius:8px;opacity:0;pointer-events:none}
+.calDayCell{min-height:50px;padding:4px 3px;border-radius:9px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);display:flex;flex-direction:column;align-items:center;justify-content:space-between;cursor:pointer;transition:background .15s,border-color .15s,transform .15s}
+.calDayCell:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25);transform:translateY(-1px)}
+.calDayCell.isGoal{background:rgba(52,211,153,.14);border-color:rgba(52,211,153,.38);box-shadow:0 2px 10px rgba(52,211,153,.18)}
+.calDayCell.hasStreak{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.26);box-shadow:0 2px 8px rgba(0,0,0,.22)}
+.calDayCell.isPartial{background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.28)}
+.calDayCell.isFrozen{background:rgba(56,189,248,.12);border-color:rgba(56,189,248,.35);box-shadow:0 2px 8px rgba(56,189,248,.15)}
+.calDayCell.noStreak{background:rgba(255,255,255,.02);border-color:rgba(255,255,255,.06)}
+.calDayCell.isToday{border-color:#60a5fa!important;box-shadow:0 0 10px rgba(96,165,250,.35)}
+.calDayCell.selected{border-color:#fff!important;background:rgba(255,255,255,.18)!important}
+.calDayCell.futureDay{opacity:.35;pointer-events:none}
+.calDayTop{display:flex;align-items:center;justify-content:space-between;width:100%;padding:0 2px}
+.calDayNum{font-size:11px;font-weight:700;line-height:1}
+.calDayDot{width:4px;height:4px;border-radius:50%;background:#60a5fa}
+.calDayBadge{display:inline-flex;align-items:center;justify-content:center;gap:2px;font-size:10px;font-weight:750;line-height:1;margin-top:2px}
+.calDayBadge.goal{color:#34d399}
+.calDayBadge.active{color:#f87171}
+.calDayBadge.partial{color:#fbbf24}
+.calDayBadge.frozen{color:#38bdf8}
+.calDayBadge.inactive{color:rgba(255,255,255,.3);font-size:13px;font-weight:800}
+
+/* Calendar Selected Day Inspector & Streak Freeze Action */
+.calInspector{margin-top:12px;padding:10px 14px;border-radius:11px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);transition:background .2s}
+.calInspector.hasActive{border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.08)}
+.calInspector.hasGoal{border-color:rgba(52,211,153,.35);background:rgba(52,211,153,.08)}
+.calInspector.hasFrozen{border-color:rgba(56,189,248,.35);background:rgba(56,189,248,.08)}
+.freezeActionBtn{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:5px 12px;border-radius:8px;background:rgba(56,189,248,.18);border:1px solid rgba(56,189,248,.4);color:#bae6fd;font-size:11.5px;font-weight:650;cursor:pointer;transition:.2s}
+.freezeActionBtn:hover{background:rgba(56,189,248,.32);border-color:#38bdf8;color:#fff}
+
+/* Achievements List (Section 30) */
+.achievementsList{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
+.achievementItem{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);transition:.2s}
+.achievementItem.unlocked{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.22)}
+.achievementIcon{font-size:22px;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.08);flex-shrink:0}
+.achievementInfo{flex:1;text-align:left}
+.achievementTitle{font-size:12.5px;font-weight:700;color:#fff}
+.achievementDesc{font-size:11px;opacity:.7;margin-top:1px}
+.achievementUnlockedDate{font-size:10px;color:#60a5fa;font-weight:600;margin-top:3px}
+
+/* Productivity Insights Grid (Section 49, 50) */
+.insightsGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.insightsCard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px 12px;text-align:left}
+.insightsCard.fullWidth{grid-column:1 / -1}
+.insightsLabel{font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;opacity:.65}
+.insightsValue{font-size:16px;font-weight:750;margin-top:2px}
+.insightsSub{font-size:10.5px;opacity:.65;margin-top:1px}
+.insightsHourlyChart{display:flex;align-items:flex-end;gap:3px;height:52px;margin-top:10px;padding:2px 0}
+.insightsHourCol{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center}
+.insightsHourBar{width:100%;background:rgba(96,165,250,.6);border-radius:2px;min-height:2px;transition:height .3s ease}
+
+/* Toast Notifications */
+.flowspaceToast{position:fixed;bottom:24px;left:24px;z-index:999999;display:flex;align-items:center;gap:12px;background:rgba(18,20,26,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.24);box-shadow:0 20px 50px rgba(0,0,0,.7);border-radius:14px;padding:12px 16px;color:#fff;animation:toastIn .3s ease}
+@keyframes toastIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.toastIcon{font-size:24px;line-height:1}
+.toastContent{text-align:left}
+.toastTitle{font-size:12.5px;font-weight:750;color:#fff}
+.toastDesc{font-size:11px;opacity:.75;margin-top:1px}
+
+/* Data Portability Buttons */
+.dataActionBtn{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:9px 12px;border-radius:10px;font-size:12px;font-weight:650;cursor:pointer;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.08);color:#fff;transition:.2s;margin-top:6px}
+.dataActionBtn:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.28)}
+.dataActionBtn.danger{border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.12);color:#fca5a5}
+.dataActionBtn.danger:hover{background:rgba(239,68,68,.25);border-color:rgba(239,68,68,.6)}
+
+/* Monthly Streak Archive (Which month streak was - and which month 1) */
+.calArchiveSection{margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.1)}
+.calArchiveHeader{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;opacity:.85}
+.calArchiveList{display:flex;flex-direction:column;gap:6px;max-height:190px;overflow-y:auto}
+.calArchiveItem{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);font-size:12px;cursor:pointer;transition:.15s}
+.calArchiveItem:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.22)}
+.calArchiveItem.currentViewed{border-color:rgba(96,165,250,.5);background:rgba(96,165,250,.1)}
+.calArchiveMonthName{display:flex;align-items:center;gap:6px;font-weight:650;color:#fff}
+.calArchiveBadge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:999px;font-size:11px;font-weight:700}
+.calArchiveBadge.active{background:rgba(239,68,68,.18);border:1px solid rgba(239,68,68,.35);color:#fca5a5}
+.calArchiveBadge.inactive{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.45)}
+
+/* 30-Day Activity List */
+.streakHistoryList{display:flex;flex-direction:column;gap:8px;max-height:none!important;overflow:visible!important;padding-right:0!important;margin-top:14px}
+.streakDayItem{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;font-size:13px;transition:background .2s,border-color .2s}
+.streakDayItem.activeDay{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25)}
+.streakDayDate{display:flex;flex-direction:column;gap:2px}
+.streakDayDateTitle{display:flex;align-items:center;gap:6px;font-weight:600;color:#fff}
+.streakDayDateKey{display:flex;align-items:center;gap:5px;font-size:11px;opacity:.65;font-variant-numeric:tabular-nums}
+.streakDateIcon{font-size:13px;opacity:.9}
+.streakSubIcon{font-size:11px;opacity:.8}
+.streakDayBadge{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:999px;font-size:12px;font-weight:600;font-variant-numeric:tabular-nums;border:1px solid transparent}
+.streakDayBadge.hasTime{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.22);color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.streakDayBadge.noTime{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.07);color:rgba(255,255,255,.4)}
+.streakFireIcon{font-size:12px}
+.streakTimeIcon{font-size:12px}
+.streakStatGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.streakStatBox{padding:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);border-radius:12px;text-align:center}
+.streakStatVal{font-size:20px;font-weight:750;margin-bottom:3px}
+.streakStatLbl{font-size:11px;opacity:.7;text-transform:uppercase;letter-spacing:.5px}
+
+/* Version Card in Developer Area */
+.versionBanner{margin-bottom:12px;padding:10px 12px;border-radius:10px;background:linear-gradient(135deg,rgba(255,255,255,.1) 0%,rgba(255,255,255,.03) 100%);border:1px solid rgba(255,255,255,.18);text-align:center}
+.versionTitle{font-size:13px;font-weight:750;letter-spacing:.3px;color:#fff}
+.versionSub{font-size:10.5px;opacity:.7;margin-top:2px}
+
+/* Custom & System Wallpapers */
+.wallUploadBtn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:10px 14px;margin-bottom:12px;border-radius:12px;background:rgba(255,255,255,.14);border:1px dashed rgba(255,255,255,.36);color:#fff;cursor:pointer;font-weight:600;font-size:13px;backdrop-filter:blur(10px);transition:.2s}
+.wallUploadBtn:hover{background:rgba(255,255,255,.24);border-color:#fff}
+.wallSectionTitle{font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;opacity:.85;margin:16px 0 8px;display:flex;justify-content:space-between;align-items:center}
+.wall{position:relative;height:78px;border-radius:10px;background-size:cover;background-position:center;border:2px solid transparent;cursor:pointer;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.wall:hover{border-color:white}
+.wall.active{border-color:#60a5fa;box-shadow:0 0 10px rgba(96,165,250,.4)}
+.wallDeleteBtn{position:absolute;top:4px;right:4px;width:24px;height:24px;background:rgba(220,38,38,0.88);color:#fff;border:1px solid rgba(255,255,255,0.45);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;line-height:1;font-weight:bold;cursor:pointer;opacity:0.92;transition:opacity .15s,transform .15s,background .15s;z-index:15;box-shadow:0 2px 8px rgba(0,0,0,0.5)}
+.wall:hover .wallDeleteBtn{opacity:1;transform:scale(1.08)}
+.wallDeleteBtn:hover{background:#ff4757;transform:scale(1.15)}
+.wallNameTag{position:absolute;bottom:0;left:0;right:0;padding:3px 5px;background:rgba(0,0,0,.68);font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center;pointer-events:none}
+.emptyWallNote{padding:14px 10px;background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.14);border-radius:10px;font-size:12px;text-align:center;opacity:.75;margin-bottom:8px;line-height:1.4}
+.devCard{margin-top:22px;padding:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:14px;text-align:center}
+.devCard a{display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 12px;border-radius:10px;background:rgba(255,255,255,.08);color:#fff;text-decoration:none;font-size:13px;border:1px solid rgba(255,255,255,.12);transition:.2s}
+.devCard a:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.3)}
+
+/* Floating Draggable Sticky Mini-Timer Popup - Refined Aesthetic */
+.miniTimerPopup{position:fixed;z-index:99999;bottom:24px;right:24px;width:300px;background:rgba(18,20,27,.82);backdrop-filter:blur(32px) saturate(180%);-webkit-backdrop-filter:blur(32px) saturate(180%);border:1px solid rgba(255,255,255,.18);border-radius:22px;box-shadow:0 24px 60px rgba(0,0,0,.68),0 0 0 1px rgba(255,255,255,.08),inset 0 1px 0 rgba(255,255,255,.15);padding:14px 16px;user-select:none;touch-action:none;box-sizing:border-box;transition:transform .2s cubic-bezier(0.16,1,0.3,1),box-shadow .2s ease,border-color .2s ease}
+.miniTimerPopup:hover{border-color:rgba(255,255,255,.28);box-shadow:0 28px 70px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.12),inset 0 1px 0 rgba(255,255,255,.22)}
+.miniTimerHeader{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;cursor:grab;padding:2px 0 6px;border-bottom:1px solid rgba(255,255,255,.07)}
+.miniTimerHeader:active{cursor:grabbing}
+.miniTimerTitle{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.9)}
+.miniTimerBadge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);font-size:10px;font-weight:700;color:#fff}
+.miniTimerBadge.break{background:rgba(74,222,128,.18);border-color:rgba(74,222,128,.35);color:#86efac}
+.miniTimerGrip{font-size:13px;opacity:.45;cursor:grab}
+.miniTimerActions{display:flex;gap:5px}
+.miniTimerIconBtn{width:26px;height:26px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);color:#fff;font-size:12px;display:grid;place-items:center;padding:0;cursor:pointer;transition:.18s ease}
+.miniTimerIconBtn:hover{background:rgba(255,255,255,.25);border-color:rgba(255,255,255,.45);transform:scale(1.06)}
+.miniTimerBody{cursor:pointer;text-align:center;padding:10px 8px 12px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.03) 0%,rgba(255,255,255,0) 100%);border:1px solid rgba(255,255,255,.05);position:relative;overflow:hidden;transition:background .2s ease,border-color .2s ease}
+.miniTimerBody:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+.miniTimerDisplay{font-size:46px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-2.5px;line-height:1;color:#fff;text-shadow:0 4px 24px rgba(255,255,255,.15),0 2px 10px rgba(0,0,0,.6)}
+.miniTimerMiniBar{width:100%;height:3px;background:rgba(255,255,255,.1);border-radius:999px;margin:10px auto 7px;overflow:hidden}
+.miniTimerMiniBarFill{height:100%;width:0%;border-radius:inherit;background:linear-gradient(90deg,#ffffff,#c8d6e5);transition:width .25s ease}
+.miniTimerMiniBarFill.break{background:linear-gradient(90deg,#4ade80,#22c55e)}
+.miniTimerSession{font-size:11px;font-weight:500;color:rgba(255,255,255,.75);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.miniTimerControls{display:flex;gap:7px;margin-top:10px}
+.miniTimerBtn{flex:1;padding:8px 12px;border-radius:11px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.1);color:#fff;font-size:12px;font-weight:650;letter-spacing:.2px;cursor:pointer;transition:.18s ease;text-align:center}
+.miniTimerBtn:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.3);transform:translateY(-1px)}
+.miniTimerBtn:active{transform:translateY(0)}
+.miniTimerBtn.primary{background:#fff;color:#111;border-color:#fff;font-weight:750;box-shadow:0 4px 14px rgba(255,255,255,.25)}
+.miniTimerBtn.primary:hover{background:#f0f2f5;box-shadow:0 6px 18px rgba(255,255,255,.35)}
+
+@media(max-width:650px){.timerVisual{min-height:125px}.gauge,.pie{width:125px;height:125px}.gauge:after{inset:11px}.gauge span{font-size:23px}.pie:after{width:70px;height:70px}.soundPanel{right:10px;bottom:65px}}
+
+/* Fullscreen quote overlay (independent of dashboard quote & focus motivation) */
+.fullscreenQuote{display:none;position:fixed;left:50%;bottom:48px;transform:translateX(-50%);width:min(820px,88vw);text-align:center;font-size:var(--quote-size,16px);line-height:1.6;opacity:.92;text-shadow:0 2px 16px rgba(0,0,0,.55);z-index:6;padding:0 12px;transition:font-size .2s ease,opacity .25s ease}
+
+/* Immersive fullscreen focus mode */
+body.immersive-fullscreen{background:#0b0d10;overflow:hidden}
+body.immersive-fullscreen #bg{filter:blur(0)!important;transform:none!important}
+body.immersive-fullscreen #shade{background:rgba(0,0,0,.32)!important}
+body.immersive-fullscreen .top,
+body.immersive-fullscreen .bottom,
+body.immersive-fullscreen #wallPanel,
+body.immersive-fullscreen #settingsPanel,
+body.immersive-fullscreen #soundPanel,
+body.immersive-fullscreen #streakPanel{display:none!important}
+body.immersive-fullscreen .main{height:100vh;padding:0;align-items:center}
+body.immersive-fullscreen[data-view="focus"] #focusView{display:flex!important;flex-direction:column;align-items:center;justify-content:center;width:min(1000px,94vw);min-height:100vh}
+body.immersive-fullscreen[data-view="home"] #homeView{display:flex!important;flex-direction:column;align-items:center;justify-content:center;width:min(1000px,94vw);min-height:100vh}
+body.immersive-fullscreen[data-view="ambient"] #ambientView{display:flex!important;flex-direction:column;align-items:center;justify-content:center;width:min(1000px,94vw);min-height:100vh}
+body.immersive-fullscreen[data-view="home"] #homeView .task,
+body.immersive-fullscreen[data-view="home"] #homeView .quote{display:none!important}
+body.immersive-fullscreen[data-view="ambient"] #ambientView .controls{display:none!important}
+body.immersive-fullscreen[data-view="home"] #clock,
+body.immersive-fullscreen[data-view="ambient"] #ambientClock{transform:scale(calc(var(--clock-zoom,1) * 1.32));filter:brightness(var(--clock-brightness,1));opacity:var(--clock-opacity,1);margin:26px 0 18px}
+body.immersive-fullscreen[data-view="home"] .greeting,
+body.immersive-fullscreen[data-view="ambient"] .greeting{font-size:clamp(18px,2.4vw,30px)}
+body.immersive-fullscreen #focusView .timerModes,
+body.immersive-fullscreen #focusView .focusGoal,
+body.immersive-fullscreen #focusView .row{display:none!important}
+body.immersive-fullscreen #focusView .greeting{font-size:clamp(16px,2vw,24px);opacity:.82;margin-bottom:4px}
+body.immersive-fullscreen #focusView .timerVisual{transform:scale(calc(var(--clock-zoom,1) * 1.15));filter:brightness(var(--clock-brightness,1));opacity:var(--clock-opacity,1);margin:8px 0 20px}
+body.immersive-fullscreen #focusView .timerRead{font-size:clamp(90px,15vw,190px)}
+body.immersive-fullscreen #focusView .motivation{font-size:clamp(15px,2vw,21px);max-width:760px;opacity:.9;margin:18px auto 24px;line-height:1.55}
+body.immersive-fullscreen #focusView .controls{margin-top:2px;transition:opacity .35s cubic-bezier(0.16,1,0.3,1),transform .35s cubic-bezier(0.16,1,0.3,1),visibility .35s ease}
+body.immersive-fullscreen.controls-hidden #focusView .controls{opacity:0;visibility:hidden;pointer-events:none;transform:translateY(12px)}
+body.immersive-fullscreen #focusView .primary{padding:14px 34px}
+body.immersive-fullscreen #fullBtn{display:none}
+
+/* Fullscreen Quick-Adjustment HUD */
+.fullscreenHud{display:none;position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(0);background:rgba(18,20,26,.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:8px 18px;box-shadow:0 16px 45px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.06);z-index:999;align-items:center;gap:12px;user-select:none;transition:opacity .35s cubic-bezier(0.16,1,0.3,1),transform .35s cubic-bezier(0.16,1,0.3,1),visibility .35s ease}
+body.immersive-fullscreen .fullscreenHud{display:flex}
+body.immersive-fullscreen.controls-hidden .fullscreenHud{opacity:0;visibility:hidden;pointer-events:none;transform:translateX(-50%) translateY(-14px)}
+.hudGroup{display:flex;align-items:center;gap:6px}
+.hudLabel{font-size:11px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:rgba(255,255,255,.85);white-space:nowrap}
+.hudBtn{width:22px;height:22px;padding:0;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.12);color:#fff;font-size:13px;font-weight:700;display:grid;place-items:center;cursor:pointer;line-height:1;transition:.15s}
+.hudBtn:hover{background:rgba(255,255,255,.28);border-color:#fff}
+.hudSlider{width:68px;height:4px;accent-color:#fff;cursor:pointer}
+.hudVal{font-size:11px;font-variant-numeric:tabular-nums;color:rgba(255,255,255,.85);min-width:32px;text-align:right;font-weight:600}
+.hudDivider{width:1px;height:16px;background:rgba(255,255,255,.18)}
+.hudActions{display:flex;align-items:center;gap:6px}
+.hudActionBtn{padding:5px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.12);color:#fff;font-size:11px;font-weight:600;cursor:pointer;transition:.15s;white-space:nowrap}
+.hudActionBtn:hover{background:rgba(255,255,255,.28);border-color:#fff}
+@media(max-width:768px){.fullscreenHud{flex-wrap:wrap;border-radius:20px;padding:10px 14px;gap:8px;width:min(94vw,420px);justify-content:center}}
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.42);display:none;align-items:center;justify-content:center;z-index:40}
+.modal-card{width:min(420px,calc(100vw - 32px));background:#161a1f;border:1px solid rgba(255,255,255,.15);border-radius:18px;padding:22px 20px 18px;box-shadow:0 24px 70px rgba(0,0,0,.4)}
+.modal-card h3{margin:0 0 10px;font-size:22px}
+.modal-card p{margin:0 0 18px;line-height:1.5;color:rgba(255,255,255,.8)}
+.modal-actions{display:flex;justify-content:flex-end;gap:10px}
+.modal-btn{padding:10px 16px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;cursor:pointer}
+.modal-btn.primary{background:#fff;color:#111;border-color:#fff}
+@media(max-width:650px){
+ body.immersive-fullscreen #focusView .timerVisual{transform:scale(1)}
+ body.immersive-fullscreen #focusView .timerRead{font-size:clamp(64px,19vw,120px)}
+ body.immersive-fullscreen #focusView .motivation{padding:0 22px}
+ .fullscreenQuote{bottom:22px}
+}
+</style></head><body><div id="bg"></div><div id="shade"></div><div class="modal-backdrop" id="userNameModal" aria-hidden="true"><div class="modal-card"><h3>Welcome to Flowspace</h3><p style="margin-bottom:12px">What should we call you?</p><div style="margin-bottom:16px"><input id="userNameInput" placeholder="Your name" maxlength="40" style="width:100%;box-sizing:border-box;background:#292c31;color:#fff;border:1px solid #555;border-radius:10px;padding:12px 14px;font-size:15px;outline:none"><div id="userNameError" style="display:none;color:#ff6b6b;font-size:12px;margin-top:6px">Please enter your name to continue.</div></div><div class="modal-actions"><button class="modal-btn primary" id="saveUserNameBtn" type="button">Continue</button></div></div></div><div class="modal-backdrop" id="timerRunningModal" aria-hidden="true"><div class="modal-card"><h3 style="display:flex;align-items:center;gap:8px">⏱ Timer is Running</h3><p style="margin-bottom:18px">A focus timer is currently running. Please pause or reset your active timer before switching modes or starting another timer.</p><div class="modal-actions"><button class="modal-btn" id="keepTimerRunningBtn" type="button">Keep Running</button><button class="modal-btn primary" id="stopAndSwitchBtn" type="button">Stop & Switch</button></div></div></div><div class="modal-backdrop" id="resetConfirmModal" aria-hidden="true"><div class="modal-card"><h3 id="resetModalTitle" style="display:flex;align-items:center;gap:8px">Confirm Reset</h3><p id="resetModalMessage" style="margin-bottom:18px;line-height:1.5">Are you sure you want to proceed?</p><div class="modal-actions"><button class="modal-btn" id="cancelResetBtn" type="button">Cancel</button><button class="modal-btn primary" id="confirmResetBtn" type="button" style="background:#ef4444;border-color:#ef4444;color:#fff">Yes, Reset</button></div></div></div><div id="flowspaceToast" class="flowspaceToast" style="display:none;" aria-live="polite"><div class="toastIcon" id="toastIcon">🏆</div><div class="toastContent"><div class="toastTitle" id="toastTitle">Achievement Unlocked!</div><div class="toastDesc" id="toastDesc">Description</div></div></div><header class="top"><div class="brand">✦ flowspace <span>/ your focus place</span><span class="appVersionBadge" title="Initial Release v3.0.0">v3.0.0</span></div><nav class="topnav"><button class="pill active" data-view="home">Home</button><button class="pill" data-view="focus">Focus</button><button class="pill" data-view="ambient">Ambient</button></nav><div class="actions"><button class="icon" id="streakBtn" title="Streak, Calendar & Analytics">🔥</button><button class="icon" id="wallBtn" title="Wallpapers">▧</button><button class="icon" id="settingsBtn" title="Settings">⚙</button></div></header><main class="main"><section class="center" id="homeView"><div class="greeting" id="greeting">Good morning, there.</div><div class="date" id="date"></div><div class="clock" id="clock"></div><div class="subline">Make today count, one moment at a time.</div><div class="task"><input id="taskInput" placeholder="What is your main focus today?" maxlength="120"><button id="saveTask">Save</button></div><div class="homeStatsGrid" id="homeStatsGrid"><div class="homeStatCard fullWidth" id="homeGoalCard" title="Click to view Streak & Calendar"><div class="homeStatTop"><span>Today's Goal</span><span id="homeGoalPercent">0%</span></div><div class="homeStatMain" id="homeGoalText">0m / 120m</div><div class="homeStatProgress"><div class="homeStatProgressFill" id="homeGoalBar" style="width:0%"></div></div></div><div class="homeStatCard" id="homeStreakCard" title="Click to view Streak Calendar"><div class="homeStatTop"><span>Current Streak</span></div><div class="homeStatMain" id="homeCurrentStreak">🔥 0 days</div></div><div class="homeStatCard" id="homeBestCard" title="Click to view Streak Calendar"><div class="homeStatTop"><span>Best Streak</span></div><div class="homeStatMain" id="homeBestStreak">🏆 0 days</div></div><div class="homeStatCard fullWidth" id="homeLifetimeCard" title="Click to view Streak Calendar"><div class="homeStatTop"><span>Total Focus Time</span></div><div class="homeStatMain" id="homeTotalFocus">⏱ 0h 0m total</div></div></div><div class="quote" id="quote">“Great things are done by a series of small things brought together.”</div></section><section class="center timerbox" id="focusView"><div class="greeting" id="sessionLabel">Ready when you are.</div><div class="timerModes"><button class="pill active" data-mode="pomodoro">Pomodoro</button><button class="pill" data-mode="countdown">Countdown</button><button class="pill" data-mode="stopwatch">Stopwatch</button></div><div class="timerVisual" id="timerVisual"><div class="timerRead" id="timerRead">25:00</div></div><div class="subline" id="sessionInfo">Focus session · Session 1</div><div class="focusGoal"><span class="goalBadge" id="todayGoal" style="cursor:pointer" title="View Streak & Calendar">⏱️ Today: 0 min</span><span class="goalBadge" id="streakBadge" style="cursor:pointer" title="View Streak & Calendar">🔥 Streak: 0 days</span><span class="goalBadge" id="xpBadge">⭐ 0 XP</span></div><div class="motivation" id="motivation">Start small. Stay with it. Future you will be glad you did.</div><div class="controls"><button class="primary" id="startBtn">Start focus</button><button id="resetBtn">Reset</button><button id="skipBtn">Skip</button><button id="popoutBtn" class="pill" type="button" title="Floating mini timer (sticky & draggable)" style="display:inline-flex;align-items:center;gap:6px">🗗 Pop up</button></div><div class="row" style="justify-content:center;margin-top:18px;flex-wrap:wrap"><label><input type="checkbox" id="autoBreak" checked> Automatically start breaks</label><label><input type="checkbox" id="breaksOn" checked> Breaks on</label></div></section><section class="center hidden" id="ambientView"><div class="greeting">Take a breath.</div><div class="subline">A quiet space to reset, reflect, or simply be.</div><div class="clock" id="ambientClock"></div><div class="controls"><button id="ambientWall">Change scenery</button><button id="ambientBack">Back to home</button></div></section></main><footer class="bottom"><div class="bottomleft"><button class="icon" id="randomBtn" title="Shuffle wallpaper">⤨</button><button class="icon" id="quoteBtn" title="New quote">❝</button><span class="tiny" id="wallName">Wallpaper 01</span></div><div class="bottomright"><button class="icon" id="miniViewBtn" title="Sticky Mini Timer">🗗</button><button id="soundBtn">♫ Sounds</button><button class="icon" id="fullBtn" title="Fullscreen">⛶</button></div></footer><aside class="panel" id="streakPanel"><div class="row"><h3>🔥 Streak & Analytics</h3><button class="icon" data-close="streakPanel">×</button></div><div class="streakNavTabs"><button class="streakNavTab active" id="tabMonthCal" type="button">📅 Calendar</button><button class="streakNavTab" id="tab30Days" type="button">📋 30 Days</button><button class="streakNavTab" id="tabAchievements" type="button">🏆 Badges</button><button class="streakNavTab" id="tabInsights" type="button">📊 Insights</button></div><div class="streakStatGrid" style="grid-template-columns: repeat(4, 1fr);"><div class="streakStatBox"><div class="streakStatVal" id="streakPanelStreak">🔥 0</div><div class="streakStatLbl">Current</div></div><div class="streakStatBox"><div class="streakStatVal" id="streakPanelBest">🏆 0</div><div class="streakStatLbl">Best</div></div><div class="streakStatBox"><div class="streakStatVal" id="streakPanelFreeze">❄️ 2</div><div class="streakStatLbl">Freezes</div></div><div class="streakStatBox"><div class="streakStatVal" id="streakPanelXP">⭐ 0</div><div class="streakStatLbl">Total XP</div></div></div><div id="streakCalendarContainer" class="streakViewSection"><div class="calNavHeader"><button class="calNavBtn" id="calPrevMonthBtn" type="button" title="Previous Month">◀</button><div class="calMonthTitle" id="calMonthTitle">September 2026</div><button class="calNavBtn" id="calNextMonthBtn" type="button" title="Next Month">▶</button><button class="calTodayBtn" id="calTodayBtn" type="button" title="Jump to Current Month">Today</button></div><div class="calMonthBanner" id="calMonthBanner"><div class="calMonthBannerItem"><span class="calMonthBannerLabel">Month Streak</span><span class="calMonthBannerVal" id="calBannerStreak">🔥 Active (1)</span></div><div class="calMonthBannerItem"><span class="calMonthBannerLabel">Month Focus</span><span class="calMonthBannerVal" id="calBannerTime">⏱️ 0 min</span></div><div class="calMonthBannerItem"><span class="calMonthBannerLabel">Active Days</span><span class="calMonthBannerVal" id="calBannerDays">0 / 30</span></div></div><div class="calWeekHeaders"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div><div class="calGrid" id="calDaysGrid"></div><div class="calInspector" id="calInspector"><div id="calInspectorTitle" style="font-weight:700">📅 Select any day above</div><div id="calInspectorDetails" style="opacity:.8;font-size:11.5px">Click on any date to inspect focus minutes, sessions, and streak details.</div><button class="freezeActionBtn" id="calFreezeBtn" style="display:none;" type="button">❄️ Apply Streak Freeze</button></div><div class="calArchiveSection"><div class="calArchiveHeader"><span>✦ Monthly Streak Archive</span><span class="tiny" style="opacity:.7">Recent Months</span></div><div class="calArchiveList" id="calArchiveList"></div></div></div><div id="streakListContainer" class="streakViewSection" style="display:none;"><div style="font-size:13px;font-weight:600;margin-top:14px;margin-bottom:6px;opacity:.85">Past 30 Days Activity Log</div><div class="streakHistoryList" id="streakHistoryList"></div></div><div id="streakAchievementsContainer" class="streakViewSection" style="display:none;"><div style="font-size:13px;font-weight:600;margin-top:14px;margin-bottom:6px;opacity:.85">Achievements & Milestones</div><div class="achievementsList" id="achievementsList"></div></div><div id="streakInsightsContainer" class="streakViewSection" style="display:none;"><div style="font-size:13px;font-weight:600;margin-top:14px;margin-bottom:6px;opacity:.85">Productivity Insights</div><div class="insightsGrid" id="insightsGrid"></div></div></aside><aside class="panel" id="wallPanel"><div class="row"><h3>Choose your vibe</h3><button class="icon" data-close="wallPanel">×</button></div><input type="file" id="wallUploadInput" accept="image/*" style="display:none"><button class="wallUploadBtn" id="wallUploadBtn" type="button"><span>＋</span> Upload Wallpaper</button><input id="wallSearch" placeholder="Search wallpapers…" style="width:100%;padding:11px 14px;border-radius:10px;border:1px solid #555;background:#292c31;color:white;margin-bottom:6px"><div class="wallSectionTitle"><span>✦ My Wallpapers</span><span class="tiny" id="myWallCount">0</span></div><div class="wallgrid" id="myWallGrid" style="margin-bottom:6px"></div><div class="wallSectionTitle" style="margin-top:14px"><span>✦ System Wallpapers</span><span class="tiny" id="sysWallCount">120</span></div><div class="wallgrid" id="wallGrid"></div></aside><aside class="panel" id="settingsPanel"><div class="row"><h3>Customize dashboard</h3><button class="icon" data-close="settingsPanel">×</button></div><div class="row"><label>Your name</label><input type="text" id="settingsUserName" placeholder="Your name" maxlength="40"></div><div class="row"><label>Clock format</label><select id="format"><option value="12">12-hour</option><option value="24">24-hour</option></select></div><div class="row"><label>Show seconds</label><input type="checkbox" id="seconds" checked></div><div class="row"><label>Clock zoom</label><span class="rangeValue" id="zoomValue">100%</span></div><input type="range" id="clockZoom" min="60" max="180" value="100" style="width:100%"><div class="row"><label>Clock brightness</label><span class="rangeValue" id="clockBrightnessValue">100%</span></div><input type="range" id="clockBrightness" min="20" max="100" value="100" style="width:100%"><div class="row"><label>Timer style</label><select id="timerStyle"><option value="default">Default</option><option value="flip">Flip Clock</option><option value="progress">Progress Bar</option><option value="gauge">Gauge</option><option value="matrix">Dot Matrix</option><option value="pie">Pie</option></select></div><div class="row"><label>Dashboard quote</label><select id="dashboardQuoteMode"><option value="english">English</option><option value="islamic">Islamic</option><option value="off">Off</option></select></div><div class="row"><label>Fullscreen quote</label><select id="fullscreenQuoteMode"><option value="english">English</option><option value="islamic">Islamic</option><option value="off">Off</option></select></div><div class="row"><label>Quote size</label><span class="rangeValue" id="quoteSizeValue">16px</span></div><input type="range" id="quoteSize" min="12" max="48" value="16" style="width:100%"><div class="row"><label>Focus length (minutes)</label><input type="number" id="focusLen" min="1" max="1440" value="25"></div><div class="row"><label>Daily goal (minutes)</label><input type="number" id="dailyGoal" min="10" max="1440" value="120"></div><div class="row"><label>Short break (minutes)</label><input type="number" id="breakLen" min="1" max="90" value="5"></div><div class="row"><label>Long break (minutes)</label><input type="number" id="longLen" min="1" max="180" value="15"></div><div class="row"><label>Streak min (minutes)</label><input type="number" id="streakMinLen" min="1" max="720" value="30"></div><div class="row"><label>Require goal for streak</label><input type="checkbox" id="streakRequireGoal"></div><div class="row"><label>Streak freeze protection</label><input type="checkbox" id="streakFreezeToggle" checked></div><div class="row"><label>Wallpaper dim</label><input type="range" id="dim" min="0" max="75" value="15"></div><div class="row"><label>Wallpaper blur</label><input type="range" id="blur" min="0" max="12" value="0"></div><div class="streakCard"><div class="streakBig" id="settingsStreak">🔥 0 day streak</div><div class="tiny">Your streak grows when you complete focus sessions each day.</div></div><button id="saveSettings" class="primary" style="width:100%">Save settings</button><div class="dataCard" style="margin-top:16px;padding:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:12px;"><div style="font-size:12px;font-weight:750;text-transform:uppercase;letter-spacing:.6px;opacity:.85;margin-bottom:8px">✦ Backup & Data Portability</div><input type="file" id="importBackupInput" accept=".json" style="display:none"><button class="dataActionBtn" id="exportDataBtn" type="button">📥 Export Data (JSON Backup)</button><button class="dataActionBtn" id="importDataBtn" type="button">📤 Import Data (JSON Backup)</button><button class="dataActionBtn danger" id="resetStatsBtn" type="button" style="margin-top:10px">↺ Reset Study Statistics</button><button class="dataActionBtn danger" id="resetAllBtn" type="button">⚠ Reset Everything (Factory)</button></div><div class="devCard"><div class="versionBanner"><div class="versionTitle">✦ Flowspace — Initial Release (v3.0.0)</div><div class="versionSub">Offline Windows Focus Dashboard &amp; Study Sanctuary</div></div><div style="font-size:11px;text-transform:uppercase;letter-spacing:1.2px;opacity:.65;margin-bottom:4px">App Developer</div><div style="font-size:16px;font-weight:750;letter-spacing:.3px;color:#fff;margin-bottom:12px">Tausif Rahaman Raiyan</div><div style="font-size:11px;text-transform:uppercase;letter-spacing:.8px;opacity:.7;margin-bottom:8px">Contact Info &amp; Links</div><div style="display:flex;flex-direction:column;gap:7px"><a href="https://www.instagram.com/tausifrahamanraiyan/" target="_blank" rel="noopener noreferrer"><span style="font-size:15px">📸</span> Instagram: @tausifrahamanraiyan</a><a href="https://github.com/tausif-rahaman-raiyan" target="_blank" rel="noopener noreferrer"><span style="font-size:15px">🐙</span> GitHub: tausif-rahaman-raiyan</a><a href="https://tausifrahamanraiyan.blogspot.com/" target="_blank" rel="noopener noreferrer"><span style="font-size:15px">🌐</span> Website: tausifrahamanraiyan.blogspot.com</a></div><div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,.1);font-size:11px;opacity:.65;line-height:1.4">📦 Windows Installer: Choose your custom installation folder during setup (NSIS directory selection enabled).</div></div></aside><aside class="soundPanel" id="soundPanel"><div class="row"><h3>Soundscape</h3><button class="icon" id="closeSound" type="button">×</button></div><div class="row" style="margin-top:10px"><label>Volume</label><span class="rangeValue" id="soundVolumeValue">35%</span></div><input type="range" id="soundVolume" min="0" max="100" value="35" style="width:100%"><div class="soundGrid" style="margin-top:12px"><button class="soundBtn" type="button" data-sound="none">Off</button><button class="soundBtn" type="button" data-sound="rain">Rain</button><button class="soundBtn" type="button" data-sound="brown">Brown</button><button class="soundBtn" type="button" data-sound="focus">Focus</button></div></aside>
+<div class="fullscreenQuote" id="fullscreenQuote" aria-live="polite"></div>
+
+<!-- Floating Fullscreen Quick-Adjustment HUD -->
+<div id="fullscreenHud" class="fullscreenHud" aria-live="polite">
+  <div class="hudGroup" title="Adjust clock & timer size">
+    <span class="hudLabel">🕒 Size</span>
+    <button class="hudBtn" id="hudClockSizeMinus" type="button" title="Decrease clock size (−)">−</button>
+    <input type="range" class="hudSlider" id="hudClockSize" min="60" max="180" step="5" value="100">
+    <button class="hudBtn" id="hudClockSizePlus" type="button" title="Increase clock size (+)">+</button>
+    <span class="hudVal" id="hudClockSizeVal">100%</span>
+  </div>
+  <div class="hudDivider"></div>
+  <div class="hudGroup" title="Adjust clock & timer brightness">
+    <span class="hudLabel">🔆 Brightness</span>
+    <button class="hudBtn" id="hudClockBrightMinus" type="button" title="Decrease brightness (−)">−</button>
+    <input type="range" class="hudSlider" id="hudClockBright" min="20" max="100" step="5" value="100">
+    <button class="hudBtn" id="hudClockBrightPlus" type="button" title="Increase brightness (+)">+</button>
+    <span class="hudVal" id="hudClockBrightVal">100%</span>
+  </div>
+  <div class="hudDivider"></div>
+  <div class="hudGroup" title="Adjust wallpaper background dim">
+    <span class="hudLabel">🖼 Dim</span>
+    <input type="range" class="hudSlider" id="hudDim" min="0" max="85" step="5" value="15">
+    <span class="hudVal" id="hudDimVal">15%</span>
+  </div>
+  <div class="hudDivider"></div>
+  <div class="hudActions">
+    <button class="hudActionBtn" id="hudShuffleWall" type="button" title="Shuffle scenery wallpaper (N)">⤨ Scenery</button>
+    <button class="hudActionBtn" id="hudExitFull" type="button" title="Exit fullscreen (Esc / F)">⛶ Exit</button>
+  </div>
+</div>
+
+<!-- Floating Draggable Sticky Mini-Timer Popup -->
+<div id="miniTimerPopup" class="miniTimerPopup" style="display:none;" aria-live="polite">
+  <div class="miniTimerHeader" id="miniTimerHeader">
+    <div class="miniTimerTitle">
+      <span class="miniTimerGrip" title="Drag to move anywhere">⠿</span>
+      <span id="miniTimerModeLabel" class="miniTimerBadge">Pomodoro</span>
+    </div>
+    <div class="miniTimerActions">
+      <button class="miniTimerIconBtn" id="miniTimerPipBtn" title="Float over other desktop apps (Picture-in-Picture)" type="button">⧉</button>
+      <button class="miniTimerIconBtn" id="miniTimerExpandBtn" title="Back to normal view" type="button">⤢</button>
+      <button class="miniTimerIconBtn" id="miniTimerCloseBtn" title="Close popup" type="button">×</button>
+    </div>
+  </div>
+  <div class="miniTimerBody" id="miniTimerClickArea" title="Click anywhere here to return to normal view">
+    <div class="miniTimerDisplay" id="miniTimerDisplay">25:00</div>
+    <div class="miniTimerMiniBar"><div class="miniTimerMiniBarFill" id="miniTimerBarFill"></div></div>
+    <div class="miniTimerSession" id="miniTimerSession">Focus session 1</div>
+  </div>
+  <div class="miniTimerControls">
+    <button class="miniTimerBtn primary" id="miniTimerToggleBtn" type="button">Start</button>
+    <button class="miniTimerBtn" id="miniTimerResetBtn" type="button">Reset</button>
+    <button class="miniTimerBtn" id="miniTimerBackBtn" type="button" title="Back to normal view">Full View</button>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const isFileProtocol = window.location.protocol === 'file:';
+const inSrcFolder = window.location.pathname.includes('/src/');
+const assetPrefix = (isFileProtocol && inSrcFolder) ? '../assets/' : 'assets/';
+const wallpapers=Array.from({length:120},(_,i)=>({
+  name:`Scenery ${String(i+1).padStart(3,'0')}`,
+  url:`${assetPrefix}wallpapers/wallpaper-${String(i+1).padStart(3,'0')}.jpg`
+}));
+let wi=0;
+const englishQuotes=[
+  '“Great things are done by a series of small things brought together.”',
+  '“Discipline is choosing what you want most over what you want now.”',
+  '“Small steps every day add up to big results.”',
+  '“You do not have to see the whole staircase, just take the first step.”',
+  '“Consistency is the bridge between goals and achievement.”',
+  '“Focus is the art of saying no to distractions.”',
+  '“Your future is created by what you do today.”',
+  '“Progress is built one intentional minute at a time.”',
+  '“A calm mind is a powerful tool for deep work.”',
+  '“The best time to begin is the moment you decide.”'
+];
+const islamicQuotes=[
+'“নিশ্চয়ই আল্লাহ ধৈর্যশীলদের সাথে আছেন।” — সূরা আল-বাকারা — ২:১৫৩',
+'“অবশ্যই আল্লাহ তোমাদের উপর দয়া করেন।” — সূরা আল-ইমরান — ৩:১৫৯',
+'“আল্লাহ তোমাদের জন্য সহজ করে দেন, কঠিন করেন না।” — সূরা আল-মায়েদা — ৫:৬',
+'“যে ব্যক্তি আল্লাহকে ভয় করে, আল্লাহ তার জন্য উত্তম ব্যবস্থা রাখেন।” — সূরা আল-তালাক — ৬৫:২',
+'“প্রতিটি কষ্টের সঙ্গে নিশ্চয়ই স্বস্তি আছে।” — সূরা আশ-শারহ — ৯৪:৫',
+'“হে ঈমানদারগণ, ধৈর্য ও সালাতের মাধ্যমে আল্লাহকে স্মরণ করো।” — সূরা আল-বাকারা — ২:১৫৩',
+'“আল্লাহ তোমাদের নেক কাজের প্রতিদান দেন।” — সূরা আল-নাহল — ১৬:৯৬',
+'“সত্যের উপর অটল থাকো, আল্লাহ তোমাদের জন্য পথ দেখাবেন।” — সূরা আল-বাকারা — ২:২০৮',
+'“যে ব্যক্তি আল্লাহকে স্মরণ করে, সে শান্তি পায়।” — সূরা রাদ — ১৩:২৮',
+'“আল্লাহর উপর ভরসা রাখো, কারণ তিনি সর্বোত্তম রক্ষাকর্তা।” — সূরা আল-হিজর — ১৫:৪৭',
+'“যে ব্যক্তি দোয়া করে, সে আল্লাহর কাছে নিকট হয়।” — সূরা গাফির — ৪০:৬০',
+'“আল্লাহ তোমাদের ক্ষমা করুন, তিনি অত্যন্ত দয়ালু।” — সূরা আল-নূর — ২৪:২২',
+'“যে আল্লাহকে স্মরণ করে, তার জন্য আল্লাহই যথেষ্ট।” — সূরা আল-ইমরান — ৩:১৫৯',
+'“দুঃখের পরই স্বস্তি আসে।” — সূরা আশ-শারহ — ৯৪:৫',
+'“যে ব্যক্তি নিজেকে সংশোধন করে, সে সফল হয়।” — সূরা আল-শামস — ৯১:৭',
+'“আল্লাহর অনুগ্রহের জন্য কৃতজ্ঞতা প্রকাশ করো।” — সূরা ইব্রাহিম — ১৪:৭',
+'“সত্যের পথের প্রতি অটল থাকো।” — সূরা আল-নাহল — ১৬:৯৬',
+'“কষ্টের মধ্যেও আল্লাহর রহমত আছে।” — সূরা আল-শারহ — ৯৪:৫',
+'“মুমিনের জন্য আল্লাহই যথেষ্ট।” — সূরা আল-তালাক — ৬৫:৩',
+'“আল্লাহ তোমাদের জন্য চমৎকার পথ খুলে দেন।” — সূরা আল-ইমরান — ৩:১০৮',
+'“যে ব্যক্তি সৎকাজ করে, তার পুরস্কার আল্লাহর কাছে।” — সূরা আল-নাহল — ১৬:৯৬',
+'“অভিমানী লোকেরা সত্যের পথ পায় না।” — সূরা আল-নাহল — ১৬:২৩',
+'“আল্লাহর স্মরণই অন্তরকে শান্তি দেয়।” — সূরা রাদ — ১৩:২৮',
+'“সদা ধৈর্য ধরে রাখো; আল্লাহ ধৈর্যশীলদের সাথে আছেন।” — সূরা আল-বাকারা — ২:১৫৩',
+'“আল্ল্লাহ তোমাদের অন্তরকে দৃঢ় করেন।” — সূরা আল-ইমরান — ৩:১৬৬',
+'“কোনো কাজের শুরুতে আল্লাহকে স্মরণ করো।” — সূরা আল-ইমরান — ৩:১৫৯',
+'“আল্লাহ সর্বোত্তম রিজিকদাতা।” — সূরা আল-জুমার — ৩৯:১০',
+'“পথ হারানো মানুষদের জন্য আল্লাহ হিদায়াত দেন।” — সূরা আল-কাহফ — ১৮:১০',
+'“নেক কাজের প্রতি অটল থাকো।” — সূরা আল-বাকারা — ২:১১০',
+'“আল্লাহর ওপর ভরসা রাখো, কারণ তিনি সর্বোত্তম তত্ত্বাবধায়ক।” — সূরা আল-হিজর — ১৫:৪৭',
+'“যে ব্যক্তি তওবা করে, আল্লাহ তাকে ক্ষমা করেন।” — সূরা আল-নূর — ২৪:২১',
+'“আল্লাহ তোমাদের জন্য উত্তম ব্যবস্থা করেন।” — সূরা আল-তালাক — ৬৫:২',
+'“সেগুলোই মানুষকে বাঁচায় যা আল্লাহের জন্য করা হয়।” — সূরা বাকারাহ — ২:১২২',
+'“যে ব্যক্তি আল্লাহকে ভয় করে, আল্লাহ তার কষ্টকে সহজ করে দেন।” — সূরা আল-তালাক — ৬৫:২',
+'“তোমাদের মধ্যে সবচেয়ে সম্মানিত সে, যে আল্লাহকে বেশি ভয় করে।” — সূরা আল-হুজুরাত — ৪৯:১৩',
+'“আল্লাহর কাছে মানুষকে সত্যই ফিরতে হবে।” — সূরা আল-আনবিয়া — ২১:৯৩',
+'“আল্লাহ কখনো তাঁর ওয়াদা ভঙ্গ করেন না।” — সূরা আল-ইমরান — ৩:১৯',
+'“সঠিক পথে চলতে থাকো, আল্লাহ সব দেখেন।” — সূরা আল-বাকারা — ২:২৮৪',
+'“আল্লাহ তোমাদের জন্য রহমত বর্ষণ করুন।” — সূরা আল-ইমরান — ৩:১০৮',
+'“ভালোবাসা ও দয়া মানুষের মধ্যে সুন্দরতা আনে।” — সূরা আল-হুজুরাত — ৪৯:১০',
+'“আল্লাহ তোমাদের জীবনে বরকত দিন।” — সূরা আল-ইমরান — ৩:১৬৬',
+'“পার্থিব কষ্ট অস্থায়ী, আল্লাহর রহমত স্থায়ী।” — সূরা আশ-শারহ — ৯৪:৫',
+'“সবকিছুর মালিক আল্লাহ।” — সূরা আল-ইমরান — ৩:১৮',
+'“যে ব্যক্তি সৎকাজ করে, আল্লাহ তার জন্য উত্তম পুরস্কার রাখেন।” — সূরা আল-নাহল — ১৬:৯৬',
+'“সত্য ও ন্যায়ের উপর নিজেকে অটল রাখো।” — সূরা আল-মায়েদা — ৫:৮',
+'“আল্লাহর প্রতি কৃতজ্ঞতা প্রকাশ করো, সে তোমাদের বড় দান দেবে।” — সূরা ইব্রাহিম — ১৪:৭',
+'“আপনি আপনার দোয়া কখনো ছাড়বেন না।” — সূরা গাফির — ৪০:৬০',
+'“আল্লাহ তোমাদেরকে শক্তি দেবেন।” — সূরা আল-ইমরান — ৩:১৬৬',
+'“শান্তি আল্লাহর স্মরণে পাওয়া যায়।” — সূরা রাদ — ১৩:২৮',
+'“যে ব্যক্তি ধৈর্য ধরে, সে সাফল্য পায়।” — সূরা আল-নাহল — ১৬:৯৬',
+'“আল্লাহর কাছে দোয়া কবুলের পথ রয়েছে।” — সূরা গাফির — ৪০:৬০',
+'“আমলকে সহজ করে নাও, আল্লাহ তোমাদের সাহায্য করেন।” — সূরা আল-বাকারা — ২:১৮৫',
+'“সৎকাজ লোকের মনকে শান্তি দেয়।” — সূরা আল-ইনসান — ৭৬:৪',
+'“আল্লাহ জানেন, তোমরা কীভাবে চেষ্টা করছো।” — সূরা আল-হুজুরাত — ৪৯:১৩',
+'“প্রতিটি সংগ্রামেই আল্লাহর রহমত আছে।” — সূরা আশ-শারহ — ৯৪:৫',
+'“যে ব্যক্তি নেকি করে, সে আল্লাহর সন্তুষ্টি লাভ করে।” — সূরা আল-কাসাস — ২৮:৮৮',
+'“আল্লাহর দিকে ফিরে আসো, তিনি তোমাদের গ্রহণ করবেন।” — সূরা নূহ — ৭১:১০',
+'“সত্যের কাছে অবিচল থাকো, আল্লাহ তোমাদের সাথে আছেন।” — সূরা আল-বাকারা — ২:১৫৮',
+'“মানুষের মধ্যে সবচেয়ে উত্তম সে, যে মানুষের জন্য কল্যাণ বয়ে আনে।” — সহিহ মুসলিম — ৯:২',
+'“যে ব্যক্তি আল্লাহকে স্মরণ করে, আল্লাহ তাকে উত্তম ব্যবস্থা দেন।” — সূরা আল-তালাক — ৬৫:৩',
+'“আল্লাহ তোমাদের রিজিক ও বরকত বাড়িয়ে দেন।” — সূরা আল-জুমার — ৩৯:১০',
+'“অবশ্যই আল্লাহকে ভয় করাই সঠিক জ্ঞান।” — সূরা ফাতির — ৩৫:২৮',
+'“এমন মানুষকে দোয়া করো যারা ঈমান পোষণ করে।” — সূরা গাফির — ৪০:৬০',
+'“আল্লাহই তোমাদের ভালো পথ দেখান।” — সূরা আল-নাহল — ১৬:৯০',
+'“যে ব্যক্তি তার সময়কে নেক কাজে ব্যবহার করে, সে সফল।” — সূরা আল-নাহল — ১৬:৯৭',
+'“ফেরেশতারা তোমাদের জন্য দোয়া করেন।” — সূরা আল-আনফাল — ৮:১২',
+'“আল্লাহর রহমত ছাড়া একটিও মঙ্গল হয় না।” — সূরা আল-ফাতির — ৩৫:২৮',
+'“দোয়া করো, আল্লাহ আপনাকে শুনবেন।” — সূরা গাফির — ৪০:৬০',
+'“আল্লাহর ওপর ভরসা রাখো; তিনি সর্বোত্তম পরিকল্পনাকারী।” — সূরা আল-ইমরান — ৩:১৫৯',
+'“যে ব্যক্তি সত্য ও ন্যায়ের উপর থাকে, আল্লাহ তার জন্য পথ প্রশস্ত করেন।” — সূরা আল-মায়েদা — ৫:৮',
+'“আল্লাহ তোমাদের জন্য সহজ পথ রাখেন।” — সূরা আল-শারহ — ৯৪:৫',
+'“ধৈর্যশীলদের জন্য বড় পুরস্কার আছে।” — সূরা আল-ইনফিতার — ৮২:১৭',
+'“আল্লাহর সামনে নত হও, তিনি তোমাদের শক্তি দেবেন।” — সূরা আল-নূর — ২৪:৩৭',
+'“আল্লাহকে স্মরণ করার মাধ্যমেই মানসিক শান্তি আসে।” — সূরা রাদ — ১৩:২৮',
+'“সত্য ও সুন্দর আচরণের মাধ্যমে আল্লাহর সন্তুষ্টি অর্জন করো।” — সূরা আল-নাহল — ১৬:৯০',
+'“আল্লাহ তোমাদের ভুল থেকে বাঁচিয়ে রাখুন।” — সূরা আল-নূর — ২৪:৩১',
+'“যে ব্যক্তি আল্লাহর জন্য চেষ্টা করে, আল্লাহ তার জন্য খোলা পথ দেন।” — সূরা আল-হিজর — ১৫:৪১',
+'“আল্লাহর সীমা লঙ্ঘন করো না, তিনি তোমাদের রক্ষা করবেন।” — সূরা আল-নূর — ২৪:৩১',
+'“আল্লাহ তোমাদের জন্য সঠিক পথ নির্দেশ করেছেন।” — সূরা আল-মায়েদা — ৫:১৬',
+'“যে ব্যক্তি স্মরণে থাকে, আল্লাহ তাকে রক্ষা করেন।” — সূরা রাদ — ১৩:২৮',
+'“আল্লাহর কাছে কৃতজ্ঞতা ও দোয়াই সাফল্যের চাবিকাঠি।” — সূরা ইব্রাহিম — ১৪:৭',
+'“ভালবাসা ও দয়া মানুষকে সুন্দর করে।” — সূরা আল-হুজুরাত — ৪৯:১০',
+'“আল্লাহর নেয়ামতকে স্মরণ করো, অন্তর শান্তি পাবে।” — সূরা ইব্রাহিম — ১৪:৭',
+'“নেক কাজের মাধ্যমে আল্লাহর সন্তুষ্টি অর্জন করো।” — সূরা আল-নাহল — ১৬:৯৭',
+'“যে ব্যক্তির অন্তরে ঈমান আছে, আল্লাহ তাকে সমর্থন করেন।” — সূরা আল-বাকারা — ২:১৫৮',
+'“এই পৃথিবী অস্থায়ী, আখিরাত স্থায়ী।” — সূরা আল-কাসাস — ২৮:৮৮',
+'“আল্লাহর রহমত ও মেহেরবানির ওপর ভরসা রাখো।” — সূরা আল-ইনসান — ৭৬:১',
+'“ধৈর্যই আল্লাহর পক্ষ থেকে দেওয়া বড় নেয়ামত।” — সূরা আল-আসর — ১০৩:৩',
+'“আল্লাহ তোমাদেরকে কাজে লিপ্ত হতে শক্তি দিন।” — সূরা আল-বাকারা — ২:১৫৩',
+'“সত্যের পথে অটল থাকো, আল্লাহই তোমাদের পথ দেখান।” — সূরা আল-ইমরান — ৩:১২৬',
+'“আল্লাহকে স্মরণ করো, তোমাদের মন শান্তি পাবে।” — সূরা রাদ — ১৩:২৮',
+'“সৎকাজ সর্বদা আল্লাহর সন্তুষ্টি নিয়ে আসে।” — সূরা আল-নাহল — ১৬:৯৭',
+'“কষ্ট ছাড়াও আল্লাহর রহমত আছে।” — সূরা আশ-শারহ — ৯৪:৫',
+'“আল্লাহ তোমাদের অন্তরকে প্রশান্তি দান করুন।” — সূরা আল-ইমরান — ৩:১৫৯',
+'“সঠিক পথ খোঁজো, আল্লাহ তোমার কাছে দেবেন।” — সূরা আল-নাহল — ১৬:৯০',
+'“দোয়া কবুলের মধ্যে আল্লাহর রহমত রয়েছে।” — সূরা গাফির — ৪০:৬০',
+'“কঠিন সময়ে আল্লাহকে স্মরণ করো।” — সূরা আল-বাকারা — ২:১৫৩',
+'“আল্লাহর ওপর ভরসা রাখুন; তিনি দয়ালু।” — সূরা আল-আনফাল — ৮:৬০',
+'“যোদ্ধা ও ধৈর্যশীলদের জন্য আল্লাহর পুরস্কার অনেক বড়।” — সূরা আল-ইমরান — ৩:১৪৬',
+'“আল্লাহর নেকি ও দোয়াই তোমাদের জীবনকে সুন্দর করবে।” — সূরা ইব্রাহিম — ১৪:৭',
+'“যে সুখী, সে আল্লাহর কৃতজ্ঞতা প্রকাশ করে।” — সূরা ইব্রাহিম — ১৪:৭',
+'“আল্লাহর সন্তুষ্টি ছাড়া অন্য কিছু নয়।” — সূরা আল-মায়েদা — ৫:৩',
+'“সাফল্য আল্লাহর ইচ্ছায়, কিন্তু মানুষের চেষ্টা লাগে।” — সূরা আল-মুমিনুন — ২৩:৬১'
+];
+let dashboardQuoteIndex=0;
+let fullscreenQuoteIndex=0;
+let quoteRotationTimer=null;
+
+/* User name handling */
+function getUserName(){
+  const saved=localStorage.getItem('flowspaceUserName');
+  return saved && saved.trim() ? saved.trim() : '';
+}
+function getTimeGreeting(d=new Date()){
+  const h=d.getHours();
+  if(h>=5 && h<12) return 'Good morning';
+  if(h>=12 && h<17) return 'Good afternoon';
+  if(h>=17 && h<21) return 'Good evening';
+  return 'Good night';
+}
+function updateGreeting(d=new Date()){
+  const el=$('#greeting');
+  if(!el) return;
+  const name=getUserName()||'there';
+  el.textContent=`${getTimeGreeting(d)}, ${name}.`;
+}
+
+function checkFirstLaunchUserName(){
+  const saved=getUserName();
+  const modal=$('#userNameModal');
+  const input=$('#userNameInput');
+  const err=$('#userNameError');
+  if(!saved){
+    if(modal) modal.style.display='flex';
+    if(err) err.style.display='none';
+    setTimeout(()=>{ if(input) input.focus(); },100);
+  } else {
+    if(modal) modal.style.display='none';
+  }
+  updateGreeting();
+}
+function submitUserName(){
+  const input=$('#userNameInput');
+  const err=$('#userNameError');
+  const val=input ? input.value.trim() : '';
+  if(!val){
+    if(err) err.style.display='block';
+    if(input){ input.style.borderColor='#ff6b6b'; input.focus(); }
+    return;
+  }
+  localStorage.setItem('flowspaceUserName',val);
+  const modal=$('#userNameModal');
+  if(modal) modal.style.display='none';
+  if($('#settingsUserName')) $('#settingsUserName').value=val;
+  updateGreeting();
+}
+
+function getQuoteModeForContext(context='dashboard'){
+  if (context === 'fullscreen') return $('#fullscreenQuoteMode')?.value || 'english';
+  return $('#dashboardQuoteMode')?.value || 'english';
+}
+function isIslamicQuoteEnabled(context='dashboard'){
+  return getQuoteModeForContext(context) === 'islamic';
+}
+function getQuoteListForMode(mode){
+  if (mode === 'islamic') return islamicQuotes;
+  if (mode === 'english') return englishQuotes;
+  return [];
+}
+function pickRandomQuoteIndex(list, currentIndex = -1){
+  if (!list || list.length === 0) return 0;
+  if (list.length === 1) return 0;
+  let next = Math.floor(Math.random() * list.length);
+  if (next === currentIndex) {
+    next = (next + 1) % list.length;
+  }
+  return next;
+}
+function getActiveQuoteText(context='dashboard'){
+  const mode = getQuoteModeForContext(context);
+  if (mode === 'off') return '';
+  const list = getQuoteListForMode(mode);
+  if (!list || list.length === 0) return '';
+  const idx = context === 'fullscreen' ? fullscreenQuoteIndex : dashboardQuoteIndex;
+  return list[idx % list.length] || '';
+}
+function renderQuote(){
+  const dEl = $('#quote');
+  const dMode = getQuoteModeForContext('dashboard');
+  if (dEl) {
+    if (dMode === 'off') {
+      dEl.style.display = 'none';
+      dEl.textContent = '';
+    } else {
+      dEl.style.display = 'block';
+      const text = getActiveQuoteText('dashboard');
+      dEl.textContent = text;
+    }
+  }
+
+  const fEl = $('#fullscreenQuote');
+  const fMode = getQuoteModeForContext('fullscreen');
+  const isImmersive = document.body.classList.contains('immersive-fullscreen');
+  if (fEl) {
+    if (fMode === 'off' || !isImmersive) {
+      fEl.style.display = 'none';
+      fEl.textContent = '';
+    } else {
+      fEl.style.display = 'block';
+      const text = getActiveQuoteText('fullscreen');
+      fEl.textContent = text;
+    }
+  }
+}
+function rotateQuote(){
+  const dMode = getQuoteModeForContext('dashboard');
+  const fMode = getQuoteModeForContext('fullscreen');
+  if (dMode !== 'off') {
+    const list = getQuoteListForMode(dMode);
+    dashboardQuoteIndex = pickRandomQuoteIndex(list, dashboardQuoteIndex);
+  }
+  if (fMode !== 'off') {
+    const list = getQuoteListForMode(fMode);
+    fullscreenQuoteIndex = pickRandomQuoteIndex(list, fullscreenQuoteIndex);
+  }
+  renderQuote();
+}
+function newQuoteForActiveContext(){
+  const immersive = document.body.classList.contains('immersive-fullscreen');
+  const context = immersive ? 'fullscreen' : 'dashboard';
+  const mode = getQuoteModeForContext(context);
+  if (mode === 'off') return;
+  const list = getQuoteListForMode(mode);
+  if (context === 'fullscreen') {
+    fullscreenQuoteIndex = pickRandomQuoteIndex(list, fullscreenQuoteIndex);
+  } else {
+    dashboardQuoteIndex = pickRandomQuoteIndex(list, dashboardQuoteIndex);
+  }
+  renderQuote();
+}
+if (quoteRotationTimer) clearInterval(quoteRotationTimer);
+quoteRotationTimer = setInterval(rotateQuote, 300000);
+
+/* Automatic Real-Time Settings Saving */
+function snapshotSettings(){
+  return {
+    userName: $('#settingsUserName')?.value?.trim() || getUserName(),
+    format: $('#format')?.value || '12',
+    seconds: $('#seconds')?.checked ?? true,
+    clockZoom: $('#clockZoom')?.value || '100',
+    clockBrightness: $('#clockBrightness')?.value || '100',
+    timerStyle: $('#timerStyle')?.value || 'default',
+    dashboardQuoteMode: $('#dashboardQuoteMode')?.value || 'english',
+    fullscreenQuoteMode: $('#fullscreenQuoteMode')?.value || 'english',
+    quoteSize: $('#quoteSize')?.value || '16',
+    focusLen: $('#focusLen')?.value || '25',
+    dailyGoal: $('#dailyGoal')?.value || '120',
+    breakLen: $('#breakLen')?.value || '5',
+    longLen: $('#longLen')?.value || '15',
+    dim: $('#dim')?.value || '15',
+    blur: $('#blur')?.value || '0'
+  };
+}
+function autoSaveSettings(){
+  const value = snapshotSettings();
+  if (value.userName) {
+    localStorage.setItem('flowspaceUserName', value.userName);
+  }
+  localStorage.setItem('settings', JSON.stringify(value));
+  localStorage.setItem('dailyGoal', value.dailyGoal);
+  localStorage.setItem('quoteSize', String(value.quoteSize));
+  
+  $('#shade').style.background = `rgba(0,0,0,${Number(value.dim || 15) / 100})`;
+  $('#bg').style.filter = `blur(${Number(value.blur || 0)}px)`;
+  document.documentElement.style.setProperty('--quote-size', `${value.quoteSize}px`);
+  if ($('#quoteSizeValue')) $('#quoteSizeValue').textContent = `${value.quoteSize}px`;
+  applyClockZoom();
+  renderQuote();
+  renderTimer();
+  tick();
+  updateStats();
+  updateGreeting();
+}
+function closeSettingsPanel(){
+  autoSaveSettings();
+  const panel = $('#settingsPanel');
+  if (panel) panel.style.display = 'none';
+}
+function closeWallPanel(){
+  const panel = $('#wallPanel');
+  if (panel) panel.style.display = 'none';
+}
+function closeStreakPanel(){
+  const panel = $('#streakPanel');
+  if (panel) panel.style.display = 'none';
+}
+function togglePanel(panelId){
+  const panel = document.getElementById(panelId);
+  if (!panel) return;
+  const shouldOpen = panel.style.display !== 'block';
+  if (!shouldOpen) {
+    if (panelId === 'settingsPanel') {
+      closeSettingsPanel();
+    } else {
+      panel.style.display = 'none';
+    }
+    return;
+  }
+  // close others
+  ['wallPanel', 'settingsPanel', 'streakPanel'].forEach(id => {
+    if (id !== panelId) {
+      const p = document.getElementById(id);
+      if (p) p.style.display = 'none';
+    }
+  });
+  if (panelId === 'streakPanel') renderStreakPanel();
+  panel.style.display = 'block';
+}
+
+/* Custom Wallpapers Management with reliable delete */
+function loadCustomWallpapers(){
+  try{
+    const parsed = JSON.parse(localStorage.getItem('flowspaceCustomWallpapers')||'[]');
+    return Array.isArray(parsed) ? parsed : [];
+  }catch{
+    return [];
+  }
+}
+function saveCustomWallpapers(arr){
+  try{
+    localStorage.setItem('flowspaceCustomWallpapers', JSON.stringify(arr));
+  }catch(e){
+    console.error('Storage error:', e);
+  }
+}
+function setCustomWall(id){
+  const customWalls = loadCustomWallpapers();
+  const found = customWalls.find(w=>w.id===id);
+  if(!found) return;
+  $('#bg').style.backgroundImage = `url("${found.url}")`;
+  $('#wallName').textContent = `✦ ${found.name}`;
+  localStorage.setItem('activeWallType', 'custom');
+  localStorage.setItem('activeCustomWallId', id);
+  renderWalls($('#wallSearch')?.value||'');
+}
+function setWall(i){
+  wi=(i+wallpapers.length)%wallpapers.length;
+  $('#bg').style.backgroundImage=`url('${wallpapers[wi].url}')`;
+  $('#wallName').textContent=wallpapers[wi].name;
+  localStorage.setItem('activeWallType', 'system');
+  localStorage.setItem('wall', wi);
+  renderWalls($('#wallSearch')?.value||'');
+}
+function deleteCustomWall(id, e){
+  if(e){
+    e.preventDefault();
+    e.stopPropagation();
+    if(e.stopImmediatePropagation) e.stopImmediatePropagation();
+  }
+  let customWalls = loadCustomWallpapers();
+  const index = customWalls.findIndex(w=>w.id===id);
+  if(index === -1) return;
+  
+  customWalls.splice(index, 1);
+  saveCustomWallpapers(customWalls);
+  
+  const activeType = localStorage.getItem('activeWallType');
+  const activeId = localStorage.getItem('activeCustomWallId');
+  if(activeType === 'custom' && activeId === id){
+    setWall(0);
+  } else {
+    renderWalls($('#wallSearch')?.value||'');
+  }
+}
+function handleWallpaperUpload(file){
+  if(!file) return;
+  if(!file.type || !file.type.startsWith('image/')){
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const img = new Image();
+    img.onload = function(){
+      let maxW = 1440, maxH = 900;
+      let w = img.width, h = img.height;
+      if(w > maxW || h > maxH){
+        const ratio = Math.min(maxW / w, maxH / h);
+        w = Math.round(w * ratio);
+        h = Math.round(h * ratio);
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, w, h);
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+
+      const customWalls = loadCustomWallpapers();
+      const cleanName = file.name ? file.name.replace(/\.[^/.]+$/, '').slice(0, 24) : `My Wallpaper ${customWalls.length+1}`;
+      const newWall = {
+        id: 'custom_' + Date.now() + '_' + Math.random().toString(36).slice(2,7),
+        name: cleanName,
+        url: dataUrl,
+        timestamp: Date.now()
+      };
+      customWalls.unshift(newWall);
+      try{
+        saveCustomWallpapers(customWalls);
+        setCustomWall(newWall.id);
+      }catch(err){
+        console.error(err);
+      }
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+function renderWalls(filter=''){
+  const myGrid = $('#myWallGrid');
+  const sysGrid = $('#wallGrid');
+  const customWalls = loadCustomWallpapers();
+  const activeType = localStorage.getItem('activeWallType') || 'system';
+  const activeCustomId = localStorage.getItem('activeCustomWallId');
+  const lowerFilter = filter.toLowerCase().trim();
+
+  // Render My Wallpapers
+  if(myGrid){
+    myGrid.innerHTML = '';
+    const filteredMy = customWalls.filter(w => !lowerFilter || w.name.toLowerCase().includes(lowerFilter));
+    if($('#myWallCount')) $('#myWallCount').textContent = `${customWalls.length}`;
+    
+    if(filteredMy.length === 0){
+      const emptyNote = document.createElement('div');
+      emptyNote.className = 'emptyWallNote';
+      emptyNote.style.gridColumn = '1 / -1';
+      emptyNote.textContent = customWalls.length === 0 
+        ? 'No custom wallpapers yet. Click "Upload Wallpaper" above to add your photos!'
+        : 'No custom wallpapers match your search.';
+      myGrid.append(emptyNote);
+    } else {
+      filteredMy.forEach(w => {
+        const d = document.createElement('div');
+        const isActive = (activeType === 'custom' && activeCustomId === w.id);
+        d.className = 'wall' + (isActive ? ' active' : '');
+        d.title = `${w.name} (Click to set)`;
+        d.style.backgroundImage = `url('${w.url}')`;
+        d.onclick = () => {
+          setCustomWall(w.id);
+          $('#wallPanel').style.display = 'none';
+        };
+
+        const delBtn = document.createElement('button');
+        delBtn.className = 'wallDeleteBtn';
+        delBtn.type = 'button';
+        delBtn.title = `Delete "${w.name}"`;
+        delBtn.setAttribute('aria-label', `Delete ${w.name}`);
+        delBtn.textContent = '×';
+        delBtn.onpointerdown = (e) => { e.stopPropagation(); };
+        delBtn.onclick = (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          deleteCustomWall(w.id, e);
+        };
+        d.append(delBtn);
+
+        const nameTag = document.createElement('div');
+        nameTag.className = 'wallNameTag';
+        nameTag.textContent = w.name;
+        d.append(nameTag);
+
+        myGrid.append(d);
+      });
+    }
+  }
+
+  // Render System Wallpapers
+  if(sysGrid){
+    sysGrid.innerHTML = '';
+    const filteredSys = wallpapers.filter((w, i) => {
+      if(!lowerFilter) return true;
+      return w.name.toLowerCase().includes(lowerFilter) || String(i + 1).includes(lowerFilter);
+    });
+    if($('#sysWallCount')) $('#sysWallCount').textContent = `${wallpapers.length}`;
+
+    filteredSys.forEach(w => {
+      const idx = wallpapers.indexOf(w);
+      const d = document.createElement('div');
+      const isActive = (activeType === 'system' && wi === idx);
+      d.className = 'wall' + (isActive ? ' active' : '');
+      d.title = w.name;
+      d.style.backgroundImage = `url('${w.url}')`;
+      d.onclick = () => {
+        setWall(idx);
+        $('#wallPanel').style.display = 'none';
+      };
+      sysGrid.append(d);
+    });
+  }
+}
+function restoreInitialWallpaper(){
+  const activeType = localStorage.getItem('activeWallType');
+  if(activeType === 'custom'){
+    const customWalls = loadCustomWallpapers();
+    const activeId = localStorage.getItem('activeCustomWallId');
+    const found = customWalls.find(w=>w.id===activeId);
+    if(found){
+      setCustomWall(activeId);
+      return;
+    }
+  }
+  setWall(+(localStorage.getItem('wall')||0));
+}
+function shuffleAnyWallpaper(){
+  const customWalls = loadCustomWallpapers();
+  const total = wallpapers.length + customWalls.length;
+  if(total === 0) return;
+  const pick = Math.floor(Math.random() * total);
+  if(pick < customWalls.length){
+    setCustomWall(customWalls[pick].id);
+  } else {
+    setWall(pick - customWalls.length);
+  }
+}
+renderWalls();restoreInitialWallpaper();
+
+function getClockZoom(){
+  return Number($('#clockZoom')?.value || 100);
+}
+function getClockBrightness(){
+  return Number($('#clockBrightness')?.value || 100);
+}
+function applyClockAppearance(){
+  const zoomVal = getClockZoom();
+  const brightVal = getClockBrightness();
+  const z = Math.max(50, Math.min(200, zoomVal)) / 100;
+  const b = Math.max(20, Math.min(100, brightVal)) / 100;
+
+  document.documentElement.style.setProperty('--clock-zoom', String(z));
+  document.documentElement.style.setProperty('--clock-brightness', String(b));
+  document.documentElement.style.setProperty('--clock-opacity', String(Math.max(0.3, b)));
+
+  if($('#zoomValue')) $('#zoomValue').textContent = `${Math.round(z * 100)}%`;
+  if($('#hudClockSizeVal')) $('#hudClockSizeVal').textContent = `${Math.round(z * 100)}%`;
+  if($('#hudClockSize') && Number($('#hudClockSize').value) !== zoomVal) $('#hudClockSize').value = zoomVal;
+
+  if($('#clockBrightnessValue')) $('#clockBrightnessValue').textContent = `${Math.round(b * 100)}%`;
+  if($('#hudClockBrightVal')) $('#hudClockBrightVal').textContent = `${Math.round(b * 100)}%`;
+  if($('#hudClockBright') && Number($('#hudClockBright').value) !== brightVal) $('#hudClockBright').value = brightVal;
+
+  const dimVal = Number($('#dim')?.value || 15);
+  if($('#hudDimVal')) $('#hudDimVal').textContent = `${dimVal}%`;
+  if($('#hudDim') && Number($('#hudDim').value) !== dimVal) $('#hudDim').value = dimVal;
+}
+function applyClockZoom(){
+  applyClockAppearance();
+}
+function digits(target,dateObj=new Date()){if(!target)return;let h=dateObj.getHours(),ampm=h>=12?'PM':'AM';h=($('#format')?.value||'12')==='12'?(h%12||12):h;let str=[String(h).padStart(2,'0'),String(dateObj.getMinutes()).padStart(2,'0')];if($('#seconds')?.checked!==false)str.push(String(dateObj.getSeconds()).padStart(2,'0'));target.innerHTML=`<span class="timerRead">${str.join(':')}</span>`+((($('#format')?.value||'12')==='12')?`<span class="ampm">${ampm}</span>`:'');}
+function tick(){
+  let d=new Date();
+  digits($('#clock'),d);
+  digits($('#ambientClock'),d);
+  const dateEl=$('#date');
+  if(dateEl) dateEl.textContent=d.toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric',year:'numeric'}).toUpperCase();
+  updateGreeting(d);
+}
+tick();
+let clockInterval = setInterval(tick,250);
+
+/* --- Flowspace v3 Central State & Stats Facade Integration --- */
+function loadStudy(){
+  const raw = Stats.getRawStatistics();
+  const days = {};
+  Object.entries(raw.days || {}).forEach(([k, v]) => {
+    days[k] = (v.focusSeconds || 0) / 60;
+  });
+  return {
+    days,
+    xp: raw.lifetime?.completedSessions || 0,
+    sessions: raw.lifetime?.sessionCount || 0
+  };
+}
+function saveStudy(x){
+  saveAppData();
+}
+function calcStreak(){
+  return Stats.currentStreak();
+}
+
+function updateStats(){
+  const goal = Stats.today();
+  const currentStreak = Stats.currentStreak();
+  const raw = Stats.getRawStatistics();
+  const xp = raw.lifetime?.completedSessions || 0;
+  const goalMinutes = Math.round(goal.goalSeconds / 60);
+  const todayMinutes = Math.round(goal.seconds / 60);
+
+  $('#todayGoal').textContent = `⏱️ Today: ${todayMinutes} / ${goalMinutes} min`;
+  $('#xpBadge').textContent = `⭐ ${xp} XP`;
+  $('#streakBadge').textContent = `🔥 Streak: ${currentStreak} ${currentStreak === 1 ? 'day' : 'days'}`;
+  if($('#settingsStreak')) $('#settingsStreak').textContent = `🔥 ${currentStreak} ${currentStreak === 1 ? 'day' : 'days'} streak`;
+
+  renderHomeCards(goal, currentStreak);
+}
+
+function renderHomeCards(goal, currentStreak){
+  if (!goal) goal = Stats.today();
+  if (currentStreak === undefined) currentStreak = Stats.currentStreak();
+  const best = Stats.bestStreak();
+  const lifetime = Stats.lifetime();
+
+  const mins = Math.round(goal.seconds / 60);
+  const goalMins = Math.round(goal.goalSeconds / 60);
+  if ($('#homeGoalText')) $('#homeGoalText').textContent = `${mins}m / ${goalMins}m`;
+  if ($('#homeGoalPercent')) $('#homeGoalPercent').textContent = `${goal.percentage}%`;
+  if ($('#homeGoalBar')) $('#homeGoalBar').style.width = `${goal.percentage}%`;
+  if ($('#homeCurrentStreak')) $('#homeCurrentStreak').textContent = `🔥 ${currentStreak} ${currentStreak === 1 ? 'day' : 'days'}`;
+  if ($('#homeBestStreak')) $('#homeBestStreak').textContent = `🏆 ${best} ${best === 1 ? 'day' : 'days'}`;
+
+  const totalSec = lifetime.focusSeconds || 0;
+  const totalHrs = Math.floor(totalSec / 3600);
+  const remMins = Math.floor((totalSec % 3600) / 60);
+  if ($('#homeTotalFocus')) $('#homeTotalFocus').textContent = `⏱ ${totalHrs}h ${remMins}m total`;
+}
+
+/* Toast Notifications */
+let toastTimeout = null;
+function showToast(icon, title, desc){
+  const el = $('#flowspaceToast');
+  if(!el) return;
+  $('#toastIcon').textContent = icon;
+  $('#toastTitle').textContent = title;
+  $('#toastDesc').textContent = desc;
+  el.style.display = 'flex';
+  if(toastTimeout) clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(()=>{ el.style.display = 'none'; }, 4000);
+}
+window.showAchievementToast = function(item){
+  showToast(item.icon || '🏆', `Achievement Unlocked: ${item.title}`, item.description);
+};
+window.showGoalCompletionToast = function(goal){
+  showToast('🎯', `Daily Goal Completed!`, `You reached your ${Math.round(goal.goalSeconds/60)} min target. Streak freeze restored!`);
+};
+
+/* Calendar & Streak State */
+let calViewYear = new Date().getFullYear();
+let calViewMonth = new Date().getMonth();
+let activeStreakTab = 'calendar';
+let selectedCalDayKey = todayKey();
+
+function switchStreakTab(tab){
+  activeStreakTab = tab;
+  const isCal = tab === 'calendar';
+  const isList = tab === 'list';
+  const isAch = tab === 'achievements';
+  const isIns = tab === 'insights';
+
+  if($('#tabMonthCal')) $('#tabMonthCal').classList.toggle('active', isCal);
+  if($('#tab30Days')) $('#tab30Days').classList.toggle('active', isList);
+  if($('#tabAchievements')) $('#tabAchievements').classList.toggle('active', isAch);
+  if($('#tabInsights')) $('#tabInsights').classList.toggle('active', isIns);
+
+  if($('#streakCalendarContainer')) $('#streakCalendarContainer').style.display = isCal ? 'block' : 'none';
+  if($('#streakListContainer')) $('#streakListContainer').style.display = isList ? 'block' : 'none';
+  if($('#streakAchievementsContainer')) $('#streakAchievementsContainer').style.display = isAch ? 'block' : 'none';
+  if($('#streakInsightsContainer')) $('#streakInsightsContainer').style.display = isIns ? 'block' : 'none';
+
+  if(isCal) renderStreakCalendar();
+  else if(isList) renderStreakList();
+  else if(isAch) renderAchievements();
+  else if(isIns) renderInsights();
+}
+
+function renderStreakList(){
+  const raw = Stats.getRawStatistics();
+  const listEl = $('#streakHistoryList');
+  if (!listEl) return;
+  listEl.innerHTML = '';
+
+  const now = new Date();
+  for (let i = 0; i < 30; i++) {
+    const d = new Date(now);
+    d.setDate(d.getDate() - i);
+    const k = formatDateKey(d);
+    const day = raw.days?.[k];
+    const mins = day ? (day.focusSeconds / 60) : 0;
+    const isFrozen = day?.frozen;
+    const isEligible = isDayStreakEligible(k);
+
+    const row = document.createElement('div');
+    row.className = 'streakDayItem' + (isEligible ? ' activeDay' : '');
+
+    let dateLabel = d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', weekday: 'short' });
+    if (i === 0) dateLabel = 'Today (' + dateLabel + ')';
+    else if (i === 1) dateLabel = 'Yesterday (' + dateLabel + ')';
+
+    const roundedMins = Math.round(mins);
+    let badgeText = `${roundedMins} min`;
+    let badgeClass = roundedMins > 0 ? 'hasTime' : 'noTime';
+    let icon = '<span class="streakTimeIcon" title="Focus time">⏱️</span>';
+
+    if (isFrozen) {
+      badgeText = '❄️ Freeze';
+      badgeClass = 'hasTime';
+      icon = '';
+    } else if (isEligible) {
+      icon = '<span class="streakFireIcon" title="Streak active">🔥</span> ' + icon;
+    }
+
+    row.innerHTML = `
+      <div class="streakDayDate">
+        <div class="streakDayDateTitle"><span class="streakDateIcon">📅</span> <span>${dateLabel}</span></div>
+        <div class="streakDayDateKey"><span class="streakSubIcon">🗓️</span> <span>${k}</span></div>
+      </div>
+      <span class="streakDayBadge ${badgeClass}">
+        ${icon} <span>${badgeText}</span>
+      </span>
+    `;
+    listEl.appendChild(row);
+  }
+}
+
+function updateDayInspector(dObj, dayStatus, dayObj, isFuture){
+  const insp = $('#calInspector');
+  const title = $('#calInspectorTitle');
+  const details = $('#calInspectorDetails');
+  const freezeBtn = $('#calFreezeBtn');
+  if (!insp || !title || !details) return;
+
+  const fullDateStr = dObj.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+  title.textContent = `📅 ${fullDateStr}`;
+
+  const k = formatDateKey(dObj);
+  const mins = Math.round((dayObj?.focusSeconds || 0) / 60);
+  const sess = dayObj?.completedSessions || 0;
+
+  insp.className = 'calInspector';
+
+  if (isFuture) {
+    details.textContent = '⏳ Upcoming date in this month.';
+    if(freezeBtn) freezeBtn.style.display = 'none';
+  } else if (dayStatus === 'frozen') {
+    insp.className = 'calInspector hasFrozen';
+    details.innerHTML = `<strong>❄️ Streak Freeze Used</strong> · Streak protected on this day (0 min study).`;
+    if(freezeBtn) freezeBtn.style.display = 'none';
+  } else if (dayStatus === 'goal') {
+    insp.className = 'calInspector hasGoal';
+    details.innerHTML = `<strong>⭐ Daily Goal Met (1)</strong> · <span style="color:#fff;font-weight:600">⏱️ ${mins} min</span> across ${sess} session(s). Streak active!`;
+    if(freezeBtn) freezeBtn.style.display = 'none';
+  } else if (dayStatus === 'active') {
+    insp.className = 'calInspector hasActive';
+    details.innerHTML = `<strong>🔥 Streak Active (1)</strong> · <span style="color:#fff;font-weight:600">⏱️ ${mins} min focus</span> across ${sess} session(s).`;
+    if(freezeBtn) freezeBtn.style.display = 'none';
+  } else if (dayStatus === 'partial') {
+    details.innerHTML = `<span><strong>⏱️ Partial Study (${mins}m)</strong> · Under streak minimum (${appState.settings.streak.minimumMinutes}m).</span>`;
+    if(freezeBtn) freezeBtn.style.display = 'none';
+  } else {
+    details.innerHTML = `<span style="opacity:.75"><strong>- Inactive Day (-)</strong> · No focus sessions recorded.</span>`;
+    if (freezeBtn) {
+      const canFreeze = Stats.canUseFreeze(k);
+      freezeBtn.style.display = canFreeze ? 'inline-flex' : 'none';
+      freezeBtn.onclick = () => {
+        if(Stats.useFreeze(k)){
+          showToast('❄️', 'Streak Freeze Applied', `Your streak has been protected for ${k}.`);
+          renderAllViews();
+        }
+      };
+    }
+  }
+}
+
+function renderStreakCalendar(){
+  const raw = Stats.getRawStatistics();
+  const titleEl = $('#calMonthTitle');
+  const gridEl = $('#calDaysGrid');
+  if (!gridEl) return;
+  gridEl.innerHTML = '';
+
+  const viewDate = new Date(calViewYear, calViewMonth, 1);
+  const monthName = viewDate.toLocaleDateString(undefined, { month: 'long' });
+  if (titleEl) titleEl.textContent = `${monthName} ${calViewYear}`;
+
+  const daysInMonth = new Date(calViewYear, calViewMonth + 1, 0).getDate();
+  const firstDayIndex = viewDate.getDay();
+
+  const mStats = Stats.month(calViewYear, calViewMonth);
+  const streakBannerVal = $('#calBannerStreak');
+  const bannerTimeVal = $('#calBannerTime');
+  const bannerDaysVal = $('#calBannerDays');
+
+  if (streakBannerVal) {
+    if (mStats.studyDays > 0) {
+      streakBannerVal.textContent = `🔥 Active (1)`;
+      streakBannerVal.className = 'calMonthBannerVal streakActive';
+    } else {
+      streakBannerVal.textContent = `- Inactive (-)`;
+      streakBannerVal.className = 'calMonthBannerVal streakInactive';
+    }
+  }
+
+  if (bannerTimeVal) {
+    const roundHrs = (mStats.focusSeconds / 3600).toFixed(1);
+    const roundMins = Math.round(mStats.focusSeconds / 60);
+    bannerTimeVal.textContent = roundMins >= 60 ? `⏱️ ${roundHrs} hrs` : `⏱️ ${roundMins} min`;
+  }
+
+  if (bannerDaysVal) {
+    bannerDaysVal.textContent = `${mStats.studyDays} / ${daysInMonth}`;
+  }
+
+  for (let e = 0; e < firstDayIndex; e++) {
+    const emptyCell = document.createElement('div');
+    emptyCell.className = 'calEmptyCell';
+    gridEl.appendChild(emptyCell);
+  }
+
+  const todayK = todayKey();
+  const now = new Date();
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const cellDate = new Date(calViewYear, calViewMonth, d);
+    const k = `${calViewYear}-${String(calViewMonth + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+    const dayObj = raw.days?.[k];
+    const status = getCalendarDayStatus(k);
+    const isToday = (k === todayK);
+    const isFuture = (cellDate > now && !isToday);
+    const isSelected = (k === selectedCalDayKey || (isToday && !selectedCalDayKey));
+
+    const cell = document.createElement('div');
+    let cellClass = 'calDayCell';
+    if (status === 'goal') cellClass += ' isGoal';
+    else if (status === 'active') cellClass += ' hasStreak';
+    else if (status === 'partial') cellClass += ' isPartial';
+    else if (status === 'frozen') cellClass += ' isFrozen';
+    else cellClass += ' noStreak';
+
+    if (isToday) cellClass += ' isToday';
+    if (isSelected) cellClass += ' selected';
+    if (isFuture) cellClass += ' futureDay';
+    cell.className = cellClass;
+
+    const mins = Math.round((dayObj?.focusSeconds || 0) / 60);
+    let badgeText = '-';
+    let badgeClass = 'inactive';
+
+    if (status === 'goal') {
+      badgeText = `⭐ ${mins}m`;
+      badgeClass = 'goal';
+    } else if (status === 'active') {
+      badgeText = `🔥 ${mins}m`;
+      badgeClass = 'active';
+    } else if (status === 'partial') {
+      badgeText = `${mins}m`;
+      badgeClass = 'partial';
+    } else if (status === 'frozen') {
+      badgeText = `❄️ Freez`;
+      badgeClass = 'frozen';
+    }
+
+    cell.innerHTML = `
+      <div class="calDayTop">
+        <span class="calDayNum">${d}</span>
+        ${isToday ? '<span class="calDayDot" title="Today"></span>' : ''}
+      </div>
+      <div class="calDayBadge ${badgeClass}">
+        ${badgeText}
+      </div>
+    `;
+
+    cell.onclick = () => {
+      selectedCalDayKey = k;
+      $$('.calDayCell').forEach(c => c.classList.remove('selected'));
+      cell.classList.add('selected');
+      updateDayInspector(cellDate, status, dayObj, isFuture);
+    };
+
+    gridEl.appendChild(cell);
+
+    if (isSelected) {
+      updateDayInspector(cellDate, status, dayObj, isFuture);
+    }
+  }
+
+  renderStreakArchive();
+}
+
+function renderStreakArchive(){
+  const archiveList = $('#calArchiveList');
+  if (!archiveList) return;
+  archiveList.innerHTML = '';
+  const archives = Stats.getMonthlyArchive(6);
+
+  archives.forEach(mStats => {
+    const isCurrentView = (calViewYear === mStats.year && calViewMonth === mStats.month);
+    const item = document.createElement('div');
+    item.className = 'calArchiveItem' + (isCurrentView ? ' currentViewed' : '');
+
+    const d = new Date(mStats.year, mStats.month, 1);
+    const mName = d.toLocaleDateString(undefined, { month: 'short', year: 'numeric' });
+    const hasMonthStreak = (mStats.studyDays > 0);
+    const roundedMins = Math.round(mStats.focusSeconds / 60);
+    const timeText = roundedMins >= 60 ? `${(roundedMins / 60).toFixed(1)}h` : `${roundedMins}m`;
+
+    item.innerHTML = `
+      <div class="calArchiveMonthName">
+        <span>🗓️</span> <span>${mName}</span>
+      </div>
+      <span class="calArchiveBadge ${hasMonthStreak ? 'active' : 'inactive'}">
+        ${hasMonthStreak ? `🔥 Streak: 1 (${mStats.studyDays}d · ${timeText})` : `- Streak: - (0d)`}
+      </span>
+    `;
+
+    item.onclick = () => {
+      calViewYear = mStats.year;
+      calViewMonth = mStats.month;
+      selectedCalDayKey = null;
+      renderStreakCalendar();
+    };
+
+    archiveList.appendChild(item);
+  });
+}
+
+function renderAchievements(){
+  const container = $('#achievementsList');
+  if(!container) return;
+  container.innerHTML = '';
+  const achData = Stats.achievements();
+
+  Object.values(achData.catalog).forEach(ach => {
+    const unlocked = achData.unlocked?.[ach.id];
+    const item = document.createElement('div');
+    item.className = 'achievementItem' + (unlocked ? ' unlocked' : '');
+    const dateStr = unlocked ? new Date(unlocked.unlockedAt).toLocaleDateString() : '';
+
+    item.innerHTML = `
+      <div class="achievementIcon">${ach.icon}</div>
+      <div class="achievementInfo">
+        <div class="achievementTitle">${ach.title} ${unlocked ? '✓' : ''}</div>
+        <div class="achievementDesc">${ach.description}</div>
+        ${unlocked ? `<div class="achievementUnlockedDate">Unlocked on ${dateStr}</div>` : ''}
+      </div>
+    `;
+    container.appendChild(item);
+  });
+}
+
+function renderInsights(){
+  const container = $('#insightsGrid');
+  if(!container) return;
+  container.innerHTML = '';
+  const insights = Stats.insights();
+  const maxHourVal = Math.max(...insights.hourly, 1);
+
+  let hourlyBarsHtml = '';
+  insights.hourly.forEach((val, hour) => {
+    const pct = Math.round((val / maxHourVal) * 100);
+    hourlyBarsHtml += `
+      <div class="insightsHourCol" title="${hour}:00 - ${Math.round(val/60)} min">
+        <div class="insightsHourBar" style="height:${Math.max(2, pct)}%"></div>
+      </div>
+    `;
+  });
+
+  container.innerHTML = `
+    <div class="insightsCard fullWidth">
+      <div class="insightsLabel">Hourly Focus Distribution (24 Hours)</div>
+      <div class="insightsHourlyChart">${hourlyBarsHtml}</div>
+      <div style="display:flex;justify-content:space-between;font-size:9.5px;opacity:.6;margin-top:4px">
+        <span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>23:59</span>
+      </div>
+    </div>
+    <div class="insightsCard">
+      <div class="insightsLabel">Completion Rate</div>
+      <div class="insightsValue">${insights.completionRate}%</div>
+      <div class="insightsSub">Planned sessions completed</div>
+    </div>
+    <div class="insightsCard">
+      <div class="insightsLabel">Total Sessions</div>
+      <div class="insightsValue">${insights.totalSessions}</div>
+      <div class="insightsSub">Logged sessions lifetime</div>
+    </div>
+  `;
+}
+
+function renderStreakPanel(){
+  const currentStreak = Stats.currentStreak();
+  const bestStreak = Stats.bestStreak();
+  const freezes = Stats.getFreezesAvailable();
+  const raw = Stats.getRawStatistics();
+  const xp = raw.lifetime?.completedSessions || 0;
+
+  if ($('#streakPanelStreak')) $('#streakPanelStreak').textContent = `🔥 ${currentStreak}`;
+  if ($('#streakPanelBest')) $('#streakPanelBest').textContent = `🏆 ${bestStreak}`;
+  if ($('#streakPanelFreeze')) $('#streakPanelFreeze').textContent = `❄️ ${freezes}`;
+  if ($('#streakPanelXP')) $('#streakPanelXP').textContent = `⭐ ${xp}`;
+
+  if (activeStreakTab === 'calendar') renderStreakCalendar();
+  else if (activeStreakTab === 'list') renderStreakList();
+  else if (activeStreakTab === 'achievements') renderAchievements();
+  else if (activeStreakTab === 'insights') renderInsights();
+}
+
+function renderAllViews(){
+  updateStats();
+  updateMotivation();
+  renderStreakPanel();
+}
+window.renderAllViews = renderAllViews;
+
+function updateMotivation(){
+  const st = Stats.currentStreak();
+  const sessCount = Stats.getRawStatistics().lifetime?.sessionCount || 0;
+  const msgs=[
+   'Start small. Stay with it. Future you will be glad you did.',
+   'You do not need perfect focus—just return to the task.',
+   'One focused session is progress. Begin with this one.',
+   'Your only job right now is the next few minutes.',
+   'Consistency beats intensity. Keep your promise to yourself.',
+   'Protect this session from distractions. Your goal matters.'
+  ];
+  $('#motivation').textContent = st >= 7 ? `🔥 ${st}-day streak. Keep the chain going—one session at a time.` : msgs[sessCount % msgs.length];
+}
+
+let view='home',mode='pomodoro',running=false,kind='focus',endAt=0,elapsed=0,remaining=1500,session=1,interval=null,lastTickTime=0;
+let pendingSwitchMode=null;
+document.body.dataset.view=view;
+function showView(v){view=v;document.body.dataset.view=v;$('#homeView').classList.toggle('hidden',v!=='home');$('#focusView').style.display=v==='focus'?'block':'none';$('#ambientView').classList.toggle('hidden',v!=='ambient');$$('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));if(v==='focus')updateMotivation();renderQuote()}
+$$('[data-view]').forEach(b=>b.onclick=()=>showView(b.dataset.view));
+
+function dur(){return (+(kind==='break'?$('#breakLen').value:$('#focusLen').value)||25)*60}
+function formatTime(n,long=false){n=Math.max(0,n);let mm=Math.floor(n/60),ss=Math.floor(n%60);return long?`${String(Math.floor(n/3600)).padStart(2,'0')}:${String(mm%60).padStart(2,'0')}:${String(ss).padStart(2,'0')}`:`${String(mm).padStart(2,'0')}:${String(ss).padStart(2,'0')}`}
+function totalForDisplay(){return mode==='stopwatch'?Math.max(elapsed,1):dur()}
+function timerPercent(){let total=totalForDisplay(),n=mode==='stopwatch'?elapsed:remaining;return mode==='stopwatch'?Math.min(100,(n/Math.max(total,1))*100):Math.max(0,Math.min(100,(1-n/Math.max(total,1))*100))}
+
+function syncMiniTimer(){
+  const n = mode === 'stopwatch' ? elapsed : remaining;
+  const text = formatTime(n, mode === 'stopwatch');
+  const modeName = kind === 'break' ? 'Break' : (mode === 'stopwatch' ? 'Stopwatch' : (mode === 'countdown' ? 'Countdown' : 'Pomodoro'));
+  const task = localStorage.getItem('task');
+  const sessionText = mode === 'stopwatch' ? 'Elapsed stopwatch' : (kind === 'break' ? 'Break recharge' : `Session ${session}${task ? ' · ' + task : ''}`);
+  const pct = timerPercent();
+
+  if($('#miniTimerDisplay')) $('#miniTimerDisplay').textContent = text;
+  if($('#miniTimerToggleBtn')) $('#miniTimerToggleBtn').textContent = running ? 'Pause' : 'Start';
+  if($('#miniTimerModeLabel')) {
+    $('#miniTimerModeLabel').textContent = modeName;
+    $('#miniTimerModeLabel').classList.toggle('break', kind === 'break');
+  }
+  if($('#miniTimerBarFill')) {
+    $('#miniTimerBarFill').style.width = `${pct}%`;
+    $('#miniTimerBarFill').classList.toggle('break', kind === 'break');
+  }
+  if($('#miniTimerSession')) $('#miniTimerSession').textContent = sessionText;
+
+  if(window.electronAPI && window.electronAPI.syncTimerToMini){
+    window.electronAPI.syncTimerToMini({
+      time: text,
+      mode: modeName,
+      session: sessionText,
+      running: running,
+      percent: pct,
+      kind: kind
+    });
+  }
+
+  syncDesktopPip();
+}
+
+function renderTimer(){
+ let n=mode==='stopwatch'?elapsed:remaining, text=formatTime(n,mode==='stopwatch');
+ const style=$('#timerStyle')?.value||'default', box=$('#timerVisual');box.className='timerVisual '+style+'Style';
+ if(style==='progress'){box.innerHTML=`<div style="width:min(620px,90vw)"><div class="timerRead progressStyle" id="timerRead">${text}</div><div class="timerProgress"><div class="timerProgressFill" style="width:${timerPercent()}%"></div></div></div>`}
+ else if(style==='gauge'){let p=timerPercent(),deg=p*3.6;box.innerHTML=`<div class="gauge" style="background:conic-gradient(#fff ${deg}deg,#ffffff18 ${deg}deg)"><span>${text}</span></div>`}
+ else if(style==='pie'){let p=timerPercent(),deg=p*3.6;box.innerHTML=`<div class="pie" style="background:conic-gradient(#fff ${deg}deg,#ffffff18 ${deg}deg)"></div><div style="position:absolute;font-size:27px;font-weight:700;font-variant-numeric:tabular-nums">${text}</div>`}
+ else {box.innerHTML=`<div class="timerRead ${style==='matrix'?'matrix':''}" id="timerRead">${text}</div>`; if(style==='flip')box.classList.add('flip')}
+ $('#sessionLabel').textContent=kind==='break'?'Time to recharge.':mode==='stopwatch'?'Stopwatch':mode==='countdown'?'Countdown':'Time to focus.';
+ $('#sessionInfo').textContent=mode==='stopwatch'?'Elapsed time':`${kind==='break'?'Break':'Focus session'} · Session ${session}`;
+ $('#startBtn').textContent=running?'Pause':'Start focus';
+ updateStats();
+ syncMiniTimer();
+}
+function stop(){
+  running=false;
+  if(interval){ clearInterval(interval); interval=null; }
+  flushFocusTime();
+  renderTimer();
+}
+function start(){
+ if(running){stop();return}
+ if(mode!=='stopwatch'&&remaining<=0)remaining=dur();
+ running=true;
+ if(interval) clearInterval(interval);
+ lastTickTime=Date.now();
+ endAt=Date.now()+(mode==='stopwatch'?0:remaining*1000);let base=elapsed,started=Date.now();
+ interval=setInterval(()=>{
+   const now=Date.now();
+   const deltaSec=Math.min(2, Math.max(0, (now-lastTickTime)/1000));
+   lastTickTime=now;
+   
+   if(kind==='focus'){
+     focusSecBuffer += deltaSec;
+     if(focusSecBuffer >= 1){
+       flushFocusTime();
+     }
+   }
+   
+   if(mode==='stopwatch'){
+     elapsed=base+(Date.now()-started)/1000;
+   }else{
+     remaining=Math.max(0,(endAt-Date.now())/1000);
+     if(remaining<=0){
+       finish();
+       return;
+     }
+   }
+   renderTimer();
+ },250);
+ renderTimer();
+}
+function finish(){
+ stop();
+ if(kind==='focus'){
+   let s=loadStudy();
+   s.sessions=(s.sessions||0)+1;
+   s.xp=(s.xp||0)+1; // 1 completed session = 1 XP
+   saveStudy(s);
+   updateStats();
+   
+   $('#motivation').textContent=`🎉 Session complete! +1 XP earned. Take a breath, then decide what comes next.`;
+   session++;
+   if($('#breaksOn').checked){kind='break';remaining=(session%5===1?+(($('#longLen').value)||15):+(($('#breakLen').value)||5))*60;if($('#autoBreak').checked)start()}
+   else {remaining=dur()}
+ }else{kind='focus';remaining=dur();$('#motivation').textContent='Break finished. Ready for another focused round?';if($('#autoBreak').checked)start()}
+ renderTimer()
+}
+
+$('#startBtn').onclick=start;
+$('#resetBtn').onclick=()=>{stop();elapsed=0;kind='focus';remaining=dur();renderTimer()};
+$('#skipBtn').onclick=()=>{stop();if(kind==='focus'&&$('#breaksOn').checked){kind='break';remaining=+(($('#breakLen').value)||5)*60}else{kind='focus';remaining=dur()}renderTimer()};
+
+/* Timer Mode Switching with Protection while Running */
+$$('[data-mode]').forEach(b=>{
+  b.onclick=()=>{
+    const targetMode = b.dataset.mode;
+    if (targetMode === mode) return;
+    
+    if (running) {
+      pendingSwitchMode = targetMode;
+      const modal = $('#timerRunningModal');
+      if (modal) modal.style.display = 'flex';
+      return;
+    }
+    
+    mode = targetMode;
+    kind = 'focus';
+    elapsed = 0;
+    remaining = mode === 'stopwatch' ? 0 : dur();
+    $$('[data-mode]').forEach(x => x.classList.toggle('active', x === b));
+    renderTimer();
+  };
+});
+
+$('#keepTimerRunningBtn').onclick = () => {
+  pendingSwitchMode = null;
+  const modal = $('#timerRunningModal');
+  if (modal) modal.style.display = 'none';
+};
+
+$('#stopAndSwitchBtn').onclick = () => {
+  const modal = $('#timerRunningModal');
+  if (modal) modal.style.display = 'none';
+  if (pendingSwitchMode) {
+    stop();
+    mode = pendingSwitchMode;
+    pendingSwitchMode = null;
+    kind = 'focus';
+    elapsed = 0;
+    remaining = mode === 'stopwatch' ? 0 : dur();
+    $$('[data-mode]').forEach(x => x.classList.toggle('active', x.dataset.mode === mode));
+    renderTimer();
+  }
+};
+
+/* Floating Sticky Draggable Mini-Timer Logic */
+const miniPopup = $('#miniTimerPopup');
+let miniPopupMoved = false;
+let isDraggingMini = false;
+let dragStartX = 0, dragStartY = 0, initialLeft = 0, initialTop = 0;
+
+function openMiniTimerPopup(){
+  if(!miniPopup) return;
+  miniPopup.style.display = 'block';
+  if(!miniPopupMoved){
+    miniPopup.style.bottom = '24px';
+    miniPopup.style.right = '24px';
+    miniPopup.style.left = 'auto';
+    miniPopup.style.top = 'auto';
+  }
+  syncMiniTimer();
+}
+
+function closeMiniTimerPopup(){
+  if(miniPopup) miniPopup.style.display = 'none';
+}
+
+function returnToNormalView(){
+  if(window.electronAPI && window.electronAPI.restoreMainWindow){
+    window.electronAPI.restoreMainWindow();
+  }
+  closeMiniTimerPopup();
+  showView('focus');
+  const target = $('#timerVisual');
+  if(target && target.scrollIntoView){
+    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+// Draggable Handler for Mini-Timer
+const miniHeader = $('#miniTimerHeader');
+function onMiniPointerDown(e){
+  if(e.target.closest('button') || e.target.closest('input')) return;
+  isDraggingMini = false;
+  dragStartX = e.clientX;
+  dragStartY = e.clientY;
+  
+  const rect = miniPopup.getBoundingClientRect();
+  initialLeft = rect.left;
+  initialTop = rect.top;
+  
+  function onPointerMove(moveEvent){
+    const dx = moveEvent.clientX - dragStartX;
+    const dy = moveEvent.clientY - dragStartY;
+    if(Math.hypot(dx, dy) > 3){
+      isDraggingMini = true;
+    }
+    if(isDraggingMini){
+      miniPopupMoved = true;
+      let newX = initialLeft + dx;
+      let newY = initialTop + dy;
+      const w = miniPopup.offsetWidth || 280;
+      const h = miniPopup.offsetHeight || 140;
+      newX = Math.max(0, Math.min(window.innerWidth - w, newX));
+      newY = Math.max(0, Math.min(window.innerHeight - h, newY));
+      miniPopup.style.left = `${newX}px`;
+      miniPopup.style.top = `${newY}px`;
+      miniPopup.style.right = 'auto';
+      miniPopup.style.bottom = 'auto';
+    }
+  }
+  
+  function onPointerUp(upEvent){
+    window.removeEventListener('pointermove', onPointerMove);
+    window.removeEventListener('pointerup', onPointerUp);
+  }
+  
+  window.addEventListener('pointermove', onPointerMove, { passive: true });
+  window.addEventListener('pointerup', onPointerUp, { once: true });
+}
+
+if(miniPopup) miniPopup.addEventListener('pointerdown', onMiniPointerDown);
+
+// Mini-Timer click to return to normal view
+$('#miniTimerClickArea').onclick = (e) => {
+  if(!isDraggingMini){
+    returnToNormalView();
+  }
+};
+$('#miniTimerExpandBtn').onclick = returnToNormalView;
+$('#miniTimerBackBtn').onclick = returnToNormalView;
+$('#miniTimerCloseBtn').onclick = closeMiniTimerPopup;
+
+$('#miniTimerToggleBtn').onclick = () => { start(); syncMiniTimer(); };
+$('#miniTimerResetBtn').onclick = () => { stop(); elapsed = 0; kind = 'focus'; remaining = dur(); renderTimer(); syncMiniTimer(); };
+
+function triggerMiniOverlayOrPopup(){
+  if(window.electronAPI && window.electronAPI.toggleMiniOverlay){
+    window.electronAPI.toggleMiniOverlay();
+    return;
+  }
+  if('documentPictureInPicture' in window){
+    triggerDesktopPip();
+    return;
+  }
+  if(miniPopup.style.display === 'block'){
+    closeMiniTimerPopup();
+  } else {
+    openMiniTimerPopup();
+  }
+}
+
+$('#popoutBtn').onclick = (e) => {
+  e.stopPropagation();
+  triggerMiniOverlayOrPopup();
+};
+$('#miniViewBtn').onclick = (e) => {
+  e.stopPropagation();
+  triggerMiniOverlayOrPopup();
+};
+
+/* Listen for actions from Electron Mini Overlay Window */
+if(window.electronAPI && window.electronAPI.onTimerActionToMain){
+  window.electronAPI.onTimerActionToMain((action) => {
+    if(action === 'toggle') start();
+    else if(action === 'reset'){
+      stop();
+      elapsed = 0;
+      kind = 'focus';
+      remaining = dur();
+      renderTimer();
+    }
+  });
+}
+
+/* Open all external developer links in user's default OS browser */
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('a[href^="http://"], a[href^="https://"]');
+  if(link && window.electronAPI && window.electronAPI.openExternal){
+    e.preventDefault();
+    window.electronAPI.openExternal(link.href);
+  }
+});
+
+/* True Desktop Picture-in-Picture window for floating while using other apps */
+let desktopPipWin = null;
+function syncDesktopPip(){
+  if(!desktopPipWin || desktopPipWin.closed) return;
+  const doc = desktopPipWin.document;
+  const n = mode === 'stopwatch' ? elapsed : remaining;
+  const text = formatTime(n, mode === 'stopwatch');
+  const timerEl = doc.getElementById('pipTimer');
+  if(timerEl) timerEl.textContent = text;
+  const toggleEl = doc.getElementById('pipToggle');
+  if(toggleEl) toggleEl.textContent = running ? 'Pause' : 'Start';
+  const modeEl = doc.getElementById('pipMode');
+  if(modeEl) modeEl.textContent = kind === 'break' ? 'Break' : (mode === 'stopwatch' ? 'Stopwatch' : (mode === 'countdown' ? 'Countdown' : 'Pomodoro'));
+}
+
+async function triggerDesktopPip(){
+  if('documentPictureInPicture' in window){
+    try {
+      if(desktopPipWin && !desktopPipWin.closed){
+        desktopPipWin.close();
+        desktopPipWin = null;
+        return;
+      }
+      desktopPipWin = await window.documentPictureInPicture.requestWindow({
+        width: 290,
+        height: 165
+      });
+      const doc = desktopPipWin.document;
+      doc.title = 'Flowspace Focus Timer';
+      doc.body.style.margin = '0';
+      doc.body.style.fontFamily = 'Inter, system-ui, -apple-system, sans-serif';
+      doc.body.style.background = '#14161b';
+      doc.body.style.color = '#fff';
+      doc.body.style.display = 'flex';
+      doc.body.style.flexDirection = 'column';
+      doc.body.style.alignItems = 'center';
+      doc.body.style.justifyContent = 'center';
+      doc.body.style.height = '100vh';
+      doc.body.style.boxSizing = 'border-box';
+      doc.body.style.userSelect = 'none';
+
+      doc.body.innerHTML = `
+        <div id="pipMode" style="font-size:11px;letter-spacing:1px;text-transform:uppercase;opacity:.7;margin-bottom:2px">Pomodoro</div>
+        <div id="pipTimer" style="font-size:48px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-1.5px;line-height:1.1">25:00</div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button id="pipToggle" style="background:#fff;color:#111;border:none;border-radius:8px;padding:6px 16px;font-weight:700;font-size:12px;cursor:pointer">Start</button>
+          <button id="pipReset" style="background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:12px;cursor:pointer">Reset</button>
+        </div>
+      `;
+      doc.getElementById('pipToggle').onclick = () => { start(); syncDesktopPip(); };
+      doc.getElementById('pipReset').onclick = () => { stop(); elapsed = 0; kind = 'focus'; remaining = dur(); renderTimer(); syncDesktopPip(); };
+      desktopPipWin.addEventListener('pagehide', () => { desktopPipWin = null; });
+      syncDesktopPip();
+      return;
+    } catch(err){
+      console.warn('Document PiP error, falling back to sticky popup', err);
+    }
+  }
+  openMiniTimerPopup();
+}
+$('#miniTimerPipBtn').onclick = triggerDesktopPip;
+
+/* Calendar, Streak, Badges & Insights Navigation Bindings */
+if($('#tabMonthCal')) $('#tabMonthCal').onclick = () => switchStreakTab('calendar');
+if($('#tab30Days')) $('#tab30Days').onclick = () => switchStreakTab('list');
+if($('#tabAchievements')) $('#tabAchievements').onclick = () => switchStreakTab('achievements');
+if($('#tabInsights')) $('#tabInsights').onclick = () => switchStreakTab('insights');
+
+/* Home Cards Click to Open Streak & Calendar Panel */
+['#homeGoalCard', '#homeStreakCard', '#homeBestCard', '#homeLifetimeCard'].forEach(sel => {
+  const el = $(sel);
+  if(el) el.onclick = () => togglePanel('streakPanel');
+});
+
+/* Backup & Data Portability Actions */
+if($('#exportDataBtn')) $('#exportDataBtn').onclick = exportFlowspaceData;
+if($('#importDataBtn')) $('#importDataBtn').onclick = () => {
+  const inp = $('#importBackupInput');
+  if(inp) inp.click();
+};
+if($('#importBackupInput')) $('#importBackupInput').onchange = async (e) => {
+  const f = e.target.files?.[0];
+  if(f){
+    try {
+      await importFlowspaceData(f);
+      showToast('✓', 'Backup Restored', 'Flowspace data has been successfully imported.');
+    } catch(err){
+      console.warn('Import failed:', err);
+    }
+    e.target.value = '';
+  }
+};
+let resetActionType = null;
+function showResetModal(title, msg, type){
+  resetActionType = type;
+  $('#resetModalTitle').textContent = title;
+  $('#resetModalMessage').textContent = msg;
+  $('#resetConfirmModal').style.display = 'flex';
+}
+if($('#resetStatsBtn')) $('#resetStatsBtn').onclick = () => {
+  showResetModal('Reset Study Statistics', 'Are you sure you want to clear your study sessions, hours, and streaks? Your settings and wallpaper choices will be preserved.', 'stats');
+};
+if($('#resetAllBtn')) $('#resetAllBtn').onclick = () => {
+  showResetModal('Reset Everything', 'Warning: This will restore Flowspace to factory settings and erase all local data. This action cannot be undone.', 'all');
+};
+if($('#cancelResetBtn')) $('#cancelResetBtn').onclick = () => {
+  $('#resetConfirmModal').style.display = 'none';
+  resetActionType = null;
+};
+if($('#confirmResetBtn')) $('#confirmResetBtn').onclick = () => {
+  $('#resetConfirmModal').style.display = 'none';
+  if(resetActionType === 'stats'){
+    resetStatistics();
+    showToast('↺', 'Statistics Reset', 'All study records have been reset.');
+  } else if(resetActionType === 'all'){
+    resetEverything();
+  }
+  resetActionType = null;
+};
+
+if($('#calPrevMonthBtn')) $('#calPrevMonthBtn').onclick = () => {
+  calViewMonth--;
+  if (calViewMonth < 0) {
+    calViewMonth = 11;
+    calViewYear--;
+  }
+  selectedCalDayKey = null;
+  renderStreakCalendar();
+};
+
+if($('#calNextMonthBtn')) $('#calNextMonthBtn').onclick = () => {
+  calViewMonth++;
+  if (calViewMonth > 11) {
+    calViewMonth = 0;
+    calViewYear++;
+  }
+  selectedCalDayKey = null;
+  renderStreakCalendar();
+};
+
+if($('#calTodayBtn')) $('#calTodayBtn').onclick = () => {
+  const n = new Date();
+  calViewYear = n.getFullYear();
+  calViewMonth = n.getMonth();
+  selectedCalDayKey = todayKey();
+  renderStreakCalendar();
+};
+
+/* Navigation & Panels */
+$('#streakBtn').onclick=()=>{
+  togglePanel('streakPanel');
+};
+$('#wallBtn').onclick=()=>{
+  togglePanel('wallPanel');
+};
+$('#settingsBtn').onclick=()=>{
+  const panel=$('#settingsPanel');
+  const isOpen = panel && panel.style.display === 'block';
+  if (isOpen) {
+    closeSettingsPanel();
+    return;
+  }
+  if($('#streakPanel')) $('#streakPanel').style.display = 'none';
+  if($('#wallPanel')) $('#wallPanel').style.display = 'none';
+  if($('#settingsUserName')) $('#settingsUserName').value = getUserName();
+  $('#settingsPanel').style.display='block';
+};
+
+$('#streakBadge').onclick=()=>{ togglePanel('streakPanel'); };
+$('#todayGoal').onclick=()=>{ togglePanel('streakPanel'); };
+
+document.addEventListener('click', (event) => {
+  const target = event.target;
+  if (!target || target.closest('.panel') || target.closest('.miniTimerPopup') || target.closest('#miniViewBtn') || target.closest('#popoutBtn') || target.closest('#settingsBtn') || target.closest('#wallBtn') || target.closest('#streakBtn') || target.closest('#streakBadge') || target.closest('#todayGoal') || target.closest('#soundBtn') || target.closest('.soundBtn') || target.closest('.modal-btn') || target.closest('#saveSettings')) {
+    return;
+  }
+  const settingsOpen = $('#settingsPanel') && $('#settingsPanel').style.display === 'block';
+  const wallOpen = $('#wallPanel') && $('#wallPanel').style.display === 'block';
+  const streakOpen = $('#streakPanel') && $('#streakPanel').style.display === 'block';
+  if (settingsOpen) {
+    closeSettingsPanel();
+  } else if (wallOpen) {
+    closeWallPanel();
+  } else if (streakOpen) {
+    closeStreakPanel();
+  }
+  const soundOpen = $('#soundPanel') && $('#soundPanel').style.display === 'block';
+  if (soundOpen && !target.closest('#soundPanel')) {
+    $('#soundPanel').style.display = 'none';
+  }
+});
+
+$$('[data-close]').forEach(b=>b.onclick=()=>{
+  const target = '#' + b.dataset.close;
+  if (target === '#settingsPanel') closeSettingsPanel();
+  else $(target).style.display = 'none';
+});
+
+$('#wallSearch').oninput=e=>renderWalls(e.target.value);
+$('#randomBtn').onclick=shuffleAnyWallpaper;
+$('#ambientWall').onclick=shuffleAnyWallpaper;
+$('#wallUploadBtn').onclick=()=>{ const inp=$('#wallUploadInput'); if(inp) inp.click(); };
+$('#wallUploadInput').onchange=e=>{ const f=e.target.files?.[0]; if(f){ handleWallpaperUpload(f); e.target.value=''; } };
+$('#quoteBtn').onclick=newQuoteForActiveContext;
+$('#saveTask').onclick=()=>{
+  localStorage.setItem('task',$('#taskInput').value);
+  $('#saveTask').textContent='Saved ✓';
+  setTimeout(()=>$('#saveTask').textContent='Save',1300);
+  syncMiniTimer();
+};
+$('#taskInput').value=localStorage.getItem('task')||'';
+
+/* Settings and Fullscreen HUD Controls Wiring */
+function setClockZoom(newZoom){
+  const clamped = Math.max(60, Math.min(180, Math.round(newZoom)));
+  if($('#clockZoom')) $('#clockZoom').value = clamped;
+  if($('#hudClockSize')) $('#hudClockSize').value = clamped;
+  applyClockAppearance();
+  autoSaveSettings();
+}
+
+function setClockBrightness(newBright){
+  const clamped = Math.max(20, Math.min(100, Math.round(newBright)));
+  if($('#clockBrightness')) $('#clockBrightness').value = clamped;
+  if($('#hudClockBright')) $('#hudClockBright').value = clamped;
+  applyClockAppearance();
+  autoSaveSettings();
+}
+
+function setWallpaperDim(newDim){
+  const clamped = Math.max(0, Math.min(85, Math.round(newDim)));
+  if($('#dim')) $('#dim').value = clamped;
+  if($('#hudDim')) $('#hudDim').value = clamped;
+  $('#shade').style.background = `rgba(0,0,0,${clamped / 100})`;
+  if($('#hudDimVal')) $('#hudDimVal').textContent = `${clamped}%`;
+  autoSaveSettings();
+}
+
+$('#clockZoom').oninput=()=>{ setClockZoom(Number($('#clockZoom').value)); };
+if($('#clockBrightness')) $('#clockBrightness').oninput=()=>{ setClockBrightness(Number($('#clockBrightness').value)); };
+$('#format').onchange=()=>{ tick(); autoSaveSettings(); };
+$('#seconds').onchange=()=>{ tick(); autoSaveSettings(); };
+$('#dim').oninput=e=>{ setWallpaperDim(+e.target.value||0); };
+$('#blur').oninput=e=>{ $('#bg').style.filter=`blur(${+e.target.value||0}px)`; autoSaveSettings(); };
+$('#focusLen').oninput=()=>{ if(!running&&mode!=='stopwatch'){remaining=dur();renderTimer();} autoSaveSettings(); };
+$('#breakLen').oninput=()=>{ if(!running&&kind==='break'&&mode!=='stopwatch'){remaining=dur();renderTimer();} autoSaveSettings(); };
+$('#longLen').oninput=()=>{ if(!running&&kind==='break'&&mode!=='stopwatch'){remaining=dur();renderTimer();} autoSaveSettings(); };
+$('#timerStyle').onchange=()=>{ renderTimer(); autoSaveSettings(); };
+$('#dailyGoal').oninput=()=>{ localStorage.setItem('dailyGoal',$('#dailyGoal').value); updateStats(); autoSaveSettings(); };
+$('#saveSettings').onclick=()=>{
+  autoSaveSettings();
+  const btn = $('#saveSettings');
+  if(btn){
+    const orig = btn.textContent;
+    btn.textContent = 'Saved ✓';
+    setTimeout(()=>{ btn.textContent = orig; }, 1300);
+  }
+};
+$('#dashboardQuoteMode').onchange=()=>{ renderQuote(); autoSaveSettings(); };
+$('#fullscreenQuoteMode').onchange=()=>{ renderQuote(); autoSaveSettings(); };
+$('#quoteSize').oninput=()=>{
+  const size = $('#quoteSize').value;
+  document.documentElement.style.setProperty('--quote-size', `${size}px`);
+  $('#quoteSizeValue').textContent = `${size}px`;
+  renderQuote();
+  autoSaveSettings();
+};
+$('#settingsUserName').oninput=()=>{
+  const val = $('#settingsUserName').value.trim();
+  if(val) localStorage.setItem('flowspaceUserName', val);
+  updateGreeting();
+  autoSaveSettings();
+};
+
+/* Fullscreen HUD Event Bindings */
+if($('#hudClockSizeMinus')) $('#hudClockSizeMinus').onclick = () => setClockZoom(getClockZoom() - 5);
+if($('#hudClockSizePlus')) $('#hudClockSizePlus').onclick = () => setClockZoom(getClockZoom() + 5);
+if($('#hudClockSize')) $('#hudClockSize').oninput = e => setClockZoom(Number(e.target.value));
+
+if($('#hudClockBrightMinus')) $('#hudClockBrightMinus').onclick = () => setClockBrightness(getClockBrightness() - 5);
+if($('#hudClockBrightPlus')) $('#hudClockBrightPlus').onclick = () => setClockBrightness(getClockBrightness() + 5);
+if($('#hudClockBright')) $('#hudClockBright').oninput = e => setClockBrightness(Number(e.target.value));
+
+if($('#hudDim')) $('#hudDim').oninput = e => setWallpaperDim(Number(e.target.value));
+if($('#hudShuffleWall')) $('#hudShuffleWall').onclick = shuffleAnyWallpaper;
+if($('#hudExitFull')) $('#hudExitFull').onclick = exitImmersive;
+
+/* First-launch modal handlers */
+$('#saveUserNameBtn').onclick=submitUserName;
+$('#userNameInput').addEventListener('keydown',e=>{
+  if(e.key==='Enter') submitUserName();
+  else {
+    $('#userNameInput').style.borderColor='#555';
+    $('#userNameError').style.display='none';
+  }
+});
+
+try{
+ let s=JSON.parse(localStorage.getItem('settings')||'{}');
+ Object.keys(s).forEach(k=>{let el=$('#'+k);if(el){if(el.type==='checkbox')el.checked=s[k];else el.value=s[k];}});
+ if(s.dailyGoal)$('#dailyGoal').value=s.dailyGoal;
+ localStorage.setItem('dailyGoal',$('#dailyGoal').value||120);
+ $('#shade').style.background=`rgba(0,0,0,${($('#dim').value||15)/100})`;$('#bg').style.filter=`blur(${$('#blur').value||0}px)`;
+}catch{}
+if($('#streakMinLen')){
+  $('#streakMinLen').value = appState.settings.streak?.minimumMinutes || 30;
+  $('#streakMinLen').oninput = () => {
+    appState.settings.streak.minimumMinutes = Math.max(1, Math.min(720, Number($('#streakMinLen').value) || 30));
+    refreshStatistics();
+    autoSaveSettings();
+  };
+}
+if($('#streakRequireGoal')){
+  $('#streakRequireGoal').checked = !!appState.settings.streak?.requireDailyGoal;
+  $('#streakRequireGoal').onchange = () => {
+    appState.settings.streak.requireDailyGoal = $('#streakRequireGoal').checked;
+    refreshStatistics();
+    autoSaveSettings();
+  };
+}
+if($('#streakFreezeToggle')){
+  $('#streakFreezeToggle').checked = appState.settings.streak?.freezeEnabled !== false;
+  $('#streakFreezeToggle').onchange = () => {
+    appState.settings.streak.freezeEnabled = $('#streakFreezeToggle').checked;
+    refreshStatistics();
+    autoSaveSettings();
+  };
+}
+if($('#settingsUserName')) $('#settingsUserName').value = getUserName();
+const savedQuoteSize = Number(localStorage.getItem('quoteSize') || $('#quoteSize').value || 16);
+$('#quoteSize').value = savedQuoteSize;
+document.documentElement.style.setProperty('--quote-size', `${savedQuoteSize}px`);
+$('#quoteSizeValue').textContent = `${savedQuoteSize}px`;
+applyClockAppearance();renderQuote();updateStats();updateMotivation();renderTimer();
+checkFirstLaunchUserName();
+
+let fullscreenWasRunning=false;
+let fullscreenControlsTimer=null;
+let isControlsHovered=false;
+
+function showFullscreenControls(){
+  document.body.classList.remove('controls-hidden');
+}
+
+function hideFullscreenControls(){
+  if(document.body.classList.contains('immersive-fullscreen') && !isControlsHovered){
+    document.body.classList.add('controls-hidden');
+  }
+}
+
+function resetFullscreenControlsTimer(delay=2500){
+  if(!document.body.classList.contains('immersive-fullscreen')) return;
+  showFullscreenControls();
+  if(fullscreenControlsTimer){
+    clearTimeout(fullscreenControlsTimer);
+    fullscreenControlsTimer=null;
+  }
+  if(!isControlsHovered){
+    fullscreenControlsTimer=setTimeout(()=>{
+      hideFullscreenControls();
+    }, delay);
+  }
+}
+
+const focusControlsEl = document.querySelector('#focusView .controls');
+if(focusControlsEl){
+  focusControlsEl.addEventListener('mouseenter',()=>{
+    isControlsHovered=true;
+    showFullscreenControls();
+    if(fullscreenControlsTimer){
+      clearTimeout(fullscreenControlsTimer);
+      fullscreenControlsTimer=null;
+    }
+  });
+  focusControlsEl.addEventListener('mouseleave',()=>{
+    isControlsHovered=false;
+    resetFullscreenControlsTimer(1800);
+  });
+}
+
+const fullscreenHudEl = document.querySelector('#fullscreenHud');
+if(fullscreenHudEl){
+  fullscreenHudEl.addEventListener('mouseenter',()=>{
+    isControlsHovered=true;
+    showFullscreenControls();
+    if(fullscreenControlsTimer){
+      clearTimeout(fullscreenControlsTimer);
+      fullscreenControlsTimer=null;
+    }
+  });
+  fullscreenHudEl.addEventListener('mouseleave',()=>{
+    isControlsHovered=false;
+    resetFullscreenControlsTimer(1800);
+  });
+  fullscreenHudEl.addEventListener('input', () => {
+    isControlsHovered=true;
+    showFullscreenControls();
+    resetFullscreenControlsTimer(2500);
+  });
+}
+
+function handleFullscreenActivity(){
+  if(!document.body.classList.contains('immersive-fullscreen')) return;
+  resetFullscreenControlsTimer(2500);
+}
+
+window.addEventListener('mousemove', handleFullscreenActivity, { passive: true });
+window.addEventListener('pointermove', handleFullscreenActivity, { passive: true });
+window.addEventListener('touchstart', handleFullscreenActivity, { passive: true });
+
+async function enterImmersive(){
+ fullscreenWasRunning=(view==='focus'&&running);
+ document.body.classList.add('immersive-fullscreen');
+ renderQuote();
+ resetFullscreenControlsTimer(2500);
+ try{if(!document.fullscreenElement && document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen()}catch{}
+}
+async function exitImmersive(){
+ if(fullscreenControlsTimer){
+   clearTimeout(fullscreenControlsTimer);
+   fullscreenControlsTimer=null;
+ }
+ isControlsHovered=false;
+ document.body.classList.remove('immersive-fullscreen', 'controls-hidden');
+ renderQuote();
+ if(document.fullscreenElement && document.exitFullscreen){try{await document.exitFullscreen()}catch{}}
+ if(fullscreenWasRunning && !running && view==='focus')start();
+}
+$('#fullBtn').onclick=()=>document.body.classList.contains('immersive-fullscreen')?exitImmersive():enterImmersive();
+const DBLCLICK_FULLSCREEN_IGNORE = 'button, input, textarea, select, a, label, video, audio, .panel, .soundPanel, .modal-card, .modal-backdrop, .controls, .timerModes, .miniTimerPopup, [contenteditable="true"]';
+document.addEventListener('dblclick', (event) => {
+  if (event.target && event.target.closest(DBLCLICK_FULLSCREEN_IGNORE)) return;
+  if (document.body.classList.contains('immersive-fullscreen')) {
+    exitImmersive();
+  } else {
+    enterImmersive();
+  }
+});
+['fullscreenchange', 'webkitfullscreenchange'].forEach(ev => {
+  document.addEventListener(ev, () => {
+    if(!document.fullscreenElement && !document.webkitFullscreenElement && document.body.classList.contains('immersive-fullscreen')){
+      exitImmersive();
+    }
+  });
+});
+
+$('#ambientBack').onclick=()=>showView('home');
+
+/* Built-in study sounds: no external files required */
+let audioCtx=null,masterGain=null,soundNodes=[],currentSound='none';
+function getSoundVolume(){ const el=$('#soundVolume'); return el ? Number(el.value || 35) : 35; }
+function syncSoundDisplay(){ const el=$('#soundVolumeValue'); if (el) el.textContent = `${getSoundVolume()}%`; }
+function audioReady(){
+  if (!window.AudioContext && !window.webkitAudioContext) return;
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  if (!masterGain) {
+    masterGain = audioCtx.createGain();
+    masterGain.gain.value = getSoundVolume() / 100;
+    masterGain.connect(audioCtx.destination);
+  }
+}
+function stopSound(){
+  soundNodes.forEach(n=>{ try{ n.stop?.(); } catch {} });
+  soundNodes=[];
+  currentSound='none';
+  $$('.soundBtn').forEach(b=>b.classList.remove('active'));
+  if (masterGain) masterGain.gain.value = 0;
+}
+function makeNoise(type){
+  const volumeEl=$('#soundVolume');
+  if (!window.AudioContext && !window.webkitAudioContext) return;
+  audioReady();
+  stopSound();
+  audioReady();
+  currentSound=type;
+  if (masterGain) masterGain.gain.value = getSoundVolume() / 100;
+  if (type === 'none') return;
+
+  let buffer=audioCtx.createBuffer(1,audioCtx.sampleRate*2,audioCtx.sampleRate),data=buffer.getChannelData(0),last=0;
+  for(let i=0;i<data.length;i++){let r=Math.random()*2-1;if(type==='brown'){last=(last+0.02*r)/1.02;data[i]=last*3.5}else data[i]=r}
+  let src=audioCtx.createBufferSource();src.buffer=buffer;src.loop=true;
+  let filter=audioCtx.createBiquadFilter();filter.type='lowpass';filter.frequency.value=type==='rain'?2800:type==='brown'?650:5000;
+  src.connect(filter).connect(masterGain);src.start();soundNodes.push(src);
+  if(type==='focus'){stopSound();audioReady();currentSound='focus';if (masterGain) masterGain.gain.value = getSoundVolume() / 100;let osc=audioCtx.createOscillator();let gain=audioCtx.createGain();osc.type='sine';osc.frequency.value=432;gain.gain.value=.025;osc.connect(gain).connect(masterGain);osc.start();soundNodes.push(osc)}
+  $$('.soundBtn').forEach(b=>{if(b.dataset.sound===type)b.classList.add('active')})
+}
+$('#soundBtn').onclick=()=>{let p=$('#soundPanel'); if (p) p.style.display = p.style.display === 'block' ? 'none' : 'block';};
+$('#closeSound').onclick=()=>{ const p=$('#soundPanel'); if (p) p.style.display='none'; };
+$('#soundVolume').oninput=e=>{if(masterGain)masterGain.gain.value=(+e.target.value)/100;syncSoundDisplay()};
+$$('.soundBtn').forEach(b=>b.onclick=()=>{if(b.dataset.sound==='none')stopSound();else makeNoise(b.dataset.sound)});
+if ($('#soundVolume')) {
+  syncSoundDisplay();
+}
+document.addEventListener('keydown',e=>{
+  if(['INPUT','TEXTAREA'].includes(document.activeElement.tagName))return;
+  handleFullscreenActivity();
+  if(e.key==='['||e.key==='{'){e.preventDefault();setClockZoom(getClockZoom()-5)}
+  if(e.key===']'||e.key==='}'){e.preventDefault();setClockZoom(getClockZoom()+5)}
+  if(document.body.classList.contains('immersive-fullscreen')){
+    if(e.key==='-'||e.key==='_'){e.preventDefault();setClockBrightness(getClockBrightness()-5)}
+    if(e.key==='='||e.key==='+'){e.preventDefault();setClockBrightness(getClockBrightness()+5)}
+  }
+  if(e.code==='Space'){e.preventDefault();start()}
+  if(e.key.toLowerCase()==='f')$('#fullBtn').click();
+  if(e.key.toLowerCase()==='n')$('#randomBtn').click();
+  if(e.key.toLowerCase()==='q')newQuoteForActiveContext();
+  if(e.key==='Escape'){
+    if(document.body.classList.contains('immersive-fullscreen')){exitImmersive();return}
+    closeSettingsPanel();
+    closeWallPanel();
+    closeStreakPanel();
+    const sound=$('#soundPanel');if(sound)sound.style.display='none';
+  }
+});
+</script></body></html>
