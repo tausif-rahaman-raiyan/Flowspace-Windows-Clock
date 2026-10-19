@@ -50,8 +50,8 @@
   function applyDateGreeting() {
     const date = $('#date');
     const greeting = $('#greeting');
-    if (date) date.hidden = $('#showDate')?.checked === false;
-    if (greeting) greeting.hidden = $('#showGreeting')?.checked === false;
+    if (date) date.style.display = $('#showDate')?.checked === false ? 'none' : '';
+    if (greeting) greeting.style.display = $('#showGreeting')?.checked === false ? 'none' : '';
   }
 
   function applyWallpaper() {
