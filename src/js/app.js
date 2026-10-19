@@ -1211,6 +1211,32 @@
   }
 
   // --- Public Stats & Control Facade (Section 33) ---
+  // Record focus time from the compact UI timer while keeping the central v3 stats in sync.
+  function recordFocusProgress(seconds = 0, completed = false, sessionSeconds = 0) {
+    const dateKey = todayKey();
+    if (!statistics.days[dateKey]) statistics.days[dateKey] = createDailyStats(dateKey);
+    const day = statistics.days[dateKey];
+    const safeSeconds = Math.max(0, Math.floor(Number(seconds) || 0));
+    if (safeSeconds > 0) day.focusSeconds = (day.focusSeconds || 0) + safeSeconds;
+    day.lastSessionAt = new Date().toISOString();
+    if (!day.firstSessionAt) day.firstSessionAt = day.lastSessionAt;
+    if (completed) {
+      day.sessionCount = (day.sessionCount || 0) + 1;
+      day.completedSessions = (day.completedSessions || 0) + 1;
+      statistics.sessions.push({
+        id: 'ui_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
+        mode: 'pomodoro', kind: 'focus', plannedSeconds: Math.max(0, Number(sessionSeconds) || 0),
+        actualSeconds: Math.max(0, Math.floor(Number(sessionSeconds) || 0)),
+        startedAt: day.firstSessionAt, endedAt: day.lastSessionAt, completed: true,
+        cancelled: false, abandoned: false, dateKey
+      });
+    }
+    const goal = calculateDailyGoal(dateKey);
+    day.goalCompleted = goal.completed;
+    day.streakEligible = isDayStreakEligible(dateKey);
+    refreshStatistics();
+  }
+
   const Stats = {
     today() {
       return calculateDailyGoal(todayKey());
