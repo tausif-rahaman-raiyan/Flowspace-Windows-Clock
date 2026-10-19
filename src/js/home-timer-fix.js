@@ -12,6 +12,7 @@
   compactCss.textContent = `
     .main { height: calc(100vh - 124px); overflow-y: auto; overflow-x: hidden; align-items: flex-start; padding: 8px 16px 68px; scrollbar-width: thin; }
     .center { flex: 0 0 auto; }
+    body[data-view="focus"] .main, body[data-view="ambient"] .main { align-items: center; }
     #homeView { padding-top: 2px; }
     #homeView .greeting { font-size: clamp(16px, 1.6vw, 21px); line-height: 1.25; }
     #homeView .date { margin-top: 3px; font-size: 10px; letter-spacing: 1.3px; }
