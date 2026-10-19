@@ -2,7 +2,7 @@
   "name": "flowspace",
   "version": "3.0.0",
   "description": "Flowspace Focus Dashboard",
-  "main": "server.js",
+  "main": "main.js",
   "scripts": {
     "dev": "node server.js",
     "start": "node server.js",
@@ -12,5 +12,37 @@
   },
   "dependencies": {
     "express": "^5.2.1"
+  },
+  "build": {
+    "appId": "com.flowspace.focus",
+    "productName": "Flowspace",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "server.js",
+      "src/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "Flowspace-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
   }
 }
