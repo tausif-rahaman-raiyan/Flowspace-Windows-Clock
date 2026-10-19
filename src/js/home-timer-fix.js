@@ -45,6 +45,7 @@
       height: var(--focus-timer-diameter, 220px) !important;
     }
     body.immersive-fullscreen #focusView .timerVisual .gauge span { font-size: var(--focus-gauge-label-size, 34px) !important; }
+    body.immersive-fullscreen #focusView .timerVisual .pie + div { font-size: var(--focus-gauge-label-size, 34px) !important; }
     body.immersive-fullscreen #focusView #sessionInfo { font-size: var(--focus-support-font, 14px); margin: var(--focus-support-margin, 8px) 0; }
     body.immersive-fullscreen #focusView #sessionLabel { font-size: var(--focus-label-font, 20px); line-height: 1.2; }
     body.immersive-fullscreen #focusView .focusGoal { gap: var(--focus-support-gap, 10px); margin: var(--focus-support-margin, 8px) 0; }
@@ -143,6 +144,15 @@
       if (quoteMode) quoteMode.value = 'islamic';
       localStorage.setItem('flowspace_fullscreen_quote_pref_v1', '1');
       if (typeof autoSaveSettings === 'function') autoSaveSettings();
+    }
+  } catch (_) {}
+
+  // Avoid showing the exact same Islamic quote in both the motivation line and the fullscreen footer.
+  try {
+    if (typeof fullscreenQuoteIndex !== 'undefined' && typeof getQuoteModeForContext === 'function' && getQuoteModeForContext('fullscreen') === 'islamic') {
+      const completed = Number(window.Stats?.getRawStatistics?.()?.lifetime?.completedSessions || 0);
+      fullscreenQuoteIndex = (completed + 1) % islamicQuotes.length;
+      if (typeof renderQuote === 'function') renderQuote();
     }
   } catch (_) {}
 
