@@ -7,6 +7,8 @@
   const $$ = (selector) => Array.from(document.querySelectorAll(selector));
 
   // Make the home dashboard compact without changing the fixed wallpaper.
+  // Fullscreen size is a real layout zoom: the timer grows while supporting text,
+  // spacing and controls scale down to preserve room and avoid overlap.
   const compactCss = document.createElement('style');
   compactCss.id = 'flowspace-compact-home-and-timer';
   compactCss.textContent = `
@@ -31,6 +33,26 @@
     #homeView .homeStatProgress { height: 4px; margin-top: 5px; }
     #homeView .quote { font-size: 12px; line-height: 1.4; margin: 9px auto 0; max-width: 500px; }
     #focusView { padding-top: 16px; }
+    #focusView .timerVisual { margin: 8px auto; max-width: 94vw; }
+    body.immersive-fullscreen #focusView .timerVisual { margin: var(--focus-timer-margin, 8px) auto; }
+    body.immersive-fullscreen #focusView .timerVisual .timerRead {
+      font-size: var(--focus-timer-font-size, clamp(90px, 15vw, 190px)) !important;
+      line-height: 1.02; letter-spacing: -.035em;
+    }
+    body.immersive-fullscreen #focusView .timerVisual .gauge,
+    body.immersive-fullscreen #focusView .timerVisual .pie {
+      width: var(--focus-timer-diameter, 220px) !important;
+      height: var(--focus-timer-diameter, 220px) !important;
+    }
+    body.immersive-fullscreen #focusView .timerVisual .gauge span { font-size: var(--focus-gauge-label-size, 34px) !important; }
+    body.immersive-fullscreen #focusView #sessionInfo { font-size: var(--focus-support-font, 14px); margin: var(--focus-support-margin, 8px) 0; }
+    body.immersive-fullscreen #focusView #sessionLabel { font-size: var(--focus-label-font, 20px); line-height: 1.2; }
+    body.immersive-fullscreen #focusView .focusGoal { gap: var(--focus-support-gap, 10px); margin: var(--focus-support-margin, 8px) 0; }
+    body.immersive-fullscreen #focusView .goalBadge { font-size: var(--focus-support-small-font, 13px); padding: var(--focus-badge-pad-y, 9px) var(--focus-badge-pad-x, 18px); }
+    body.immersive-fullscreen #focusView .motivation { font-size: var(--focus-motivation-font, 18px); margin: var(--focus-support-margin, 8px) auto; max-width: 84vw; line-height: 1.35; }
+    body.immersive-fullscreen #focusView .controls { gap: var(--focus-support-gap, 10px); }
+    body.immersive-fullscreen #focusView .controls button { font-size: var(--focus-support-font, 14px); padding: var(--focus-button-pad-y, 10px) var(--focus-button-pad-x, 22px); }
+    body.immersive-fullscreen #focusView > .row { font-size: var(--focus-support-small-font, 12px); margin-top: var(--focus-support-margin, 8px) !important; gap: var(--focus-support-gap, 10px); }
     #sessionInfo { margin: 8px 0 14px; }
     @media (max-width: 650px) {
       .main { height: calc(100vh - 116px); padding: 6px 10px 62px; }
@@ -66,9 +88,73 @@
     }
   }
 
+  function applyFocusZoomLayout() {
+    const focus = $('#focusView');
+    if (!focus) return;
+    const rawZoom = Number($('#hudClockSize')?.value || $('#clockZoom')?.value || 100);
+    const zoom = Math.max(0.6, Math.min(1.8, rawZoom / 100));
+    const width = Math.max(320, window.innerWidth || 1280);
+    const height = Math.max(320, window.innerHeight || 800);
+    const supportScale = Math.max(0.65, Math.min(1.18, 1.18 - ((zoom - 0.6) * 0.46)));
+    const timerFont = Math.max(42, Math.min(height * 0.29, Math.min(width * 0.20, height * 0.18 * zoom)));
+    const timerDiameter = Math.max(100, Math.min(height * 0.48, Math.min(width * 0.68, 220 * zoom)));
+    focus.style.setProperty('--focus-timer-zoom', String(zoom));
+    focus.style.setProperty('--focus-timer-font-size', timerFont + 'px');
+    focus.style.setProperty('--focus-timer-diameter', timerDiameter + 'px');
+    focus.style.setProperty('--focus-gauge-label-size', Math.max(18, timerDiameter * 0.16) + 'px');
+    focus.style.setProperty('--focus-timer-margin', Math.max(2, 10 * supportScale) + 'px');
+    focus.style.setProperty('--focus-support-scale', String(supportScale));
+    focus.style.setProperty('--focus-support-font', Math.max(11, 14 * supportScale) + 'px');
+    focus.style.setProperty('--focus-support-small-font', Math.max(10, 12 * supportScale) + 'px');
+    focus.style.setProperty('--focus-label-font', Math.max(13, 20 * supportScale) + 'px');
+    focus.style.setProperty('--focus-motivation-font', Math.max(12, 18 * supportScale) + 'px');
+    focus.style.setProperty('--focus-support-margin', Math.max(3, 10 * supportScale) + 'px');
+    focus.style.setProperty('--focus-support-gap', Math.max(4, 10 * supportScale) + 'px');
+    focus.style.setProperty('--focus-badge-pad-y', Math.max(4, 9 * supportScale) + 'px');
+    focus.style.setProperty('--focus-badge-pad-x', Math.max(7, 18 * supportScale) + 'px');
+    focus.style.setProperty('--focus-button-pad-y', Math.max(6, 10 * supportScale) + 'px');
+    focus.style.setProperty('--focus-button-pad-x', Math.max(10, 22 * supportScale) + 'px');
+  }
+  window.addEventListener('resize', applyFocusZoomLayout, { passive: true });
+  window.addEventListener('orientationchange', applyFocusZoomLayout, { passive: true });
+  const originalSetClockZoom = setClockZoom;
+  setClockZoom = function (newZoom) {
+    originalSetClockZoom(newZoom);
+    applyFocusZoomLayout();
+  };
+
+  const focusIslamicQuotes = [
+    '“Indeed, with hardship comes ease.” — Qur’an 94:5',
+    '“My Lord, increase me in knowledge.” — Qur’an 20:114',
+    '“And whoever relies upon Allah—then He is sufficient for him.” — Qur’an 65:3'
+  ];
+  updateMotivation = function () {
+    const el = $('#motivation');
+    if (!el) return;
+    const completed = Number(window.Stats?.getRawStatistics?.()?.lifetime?.completedSessions || 0);
+    el.textContent = focusIslamicQuotes[completed % focusIslamicQuotes.length];
+  };
+
+  // Make the requested Islamic quote the initial fullscreen preference once;
+  // users can subsequently change it from Settings without being overridden.
+  try {
+    if (!localStorage.getItem('flowspace_fullscreen_quote_pref_v1')) {
+      const quoteMode = $('#fullscreenQuoteMode');
+      if (quoteMode) quoteMode.value = 'islamic';
+      localStorage.setItem('flowspace_fullscreen_quote_pref_v1', '1');
+      if (typeof autoSaveSettings === 'function') autoSaveSettings();
+    }
+  } catch (_) {}
+
+  // Make sure the dim setting is applied on startup as well as from the HUD.
+  const initialDim = Math.max(0, Math.min(85, Number($('#dim')?.value ?? 15))) / 100;
+  document.documentElement.style.setProperty('--wallpaper-dim', String(initialDim));
+  if ($('#shade')) $('#shade').style.background = 'rgba(0,0,0,' + initialDim + ')';
+
   const originalRenderTimer = renderTimer;
   renderTimer = function (fullStats = false) {
     originalRenderTimer(fullStats);
+    applyFocusZoomLayout();
     const label = $('#sessionLabel');
     const info = $('#sessionInfo');
     const startBtn = $('#startBtn');
@@ -249,6 +335,15 @@
     renderTimer(true);
   }, true);
 
+  // Keep the motivation text Islamic even when the saved settings are loaded.
+  try {
+    if ($('#motivation') && /Start small\. Stay with it\. Future you will be glad you did\./i.test($('#motivation').textContent)) {
+      $('#motivation').textContent = focusIslamicQuotes[0];
+    }
+  } catch (_) {}
+
   // Render compact state and labels immediately on website and in the Electron renderer.
   renderTimer(true);
+  applyFocusZoomLayout();
+  window.addEventListener('flowspace-focus-zoom', applyFocusZoomLayout);
 })();
