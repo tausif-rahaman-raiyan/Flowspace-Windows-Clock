@@ -1287,6 +1287,9 @@
     getRawStatistics() {
       return statistics;
     },
+    recordFocusProgress(seconds, completed, sessionSeconds) {
+      return recordFocusProgress(seconds, completed, sessionSeconds);
+    },
     isStreakEligible(dateKey) {
       return isDayStreakEligible(dateKey);
     }
