@@ -2384,7 +2384,7 @@ document.addEventListener('keydown',e=>{
   window.addEventListener('resize',autoFit,{passive:true});
   document.addEventListener('fullscreenchange',()=>setTimeout(autoFit,80));
   const observer=new MutationObserver(()=>requestAnimationFrame(autoFit));
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{const b=$('#timerVisual');if(b)observer.observe(b,{childList:true,subtree:true,attributes:true});autoFit();},{once:true});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{const b=$('#timerVisual');if(b)observer.observe(b,{childList:true,subtree:true,attributes:false});autoFit();},{once:true});
   else {const b=$('#timerVisual');if(b)observer.observe(b,{childList:true,subtree:true,attributes:true});autoFit();}
 })();
 </script>
